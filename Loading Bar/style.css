@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* set the flex-direction to column */
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: sans-serif;
+    color: aliceblue;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+}
+
+.loading-text {
+    margin-bottom: 20px; /* add some margin below the loading text */
+}
+
+.percentage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-bar {
+    width: 0;
+    height: 15px;
+    background-color: orange;
+    transition: width 0.9s ease-in-out;
+    max-width: 510px;
+}
