@@ -1,0 +1,97 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    background: #f1f5f8;
+    line-height: 2.2;
+    font-size: 0.875rem;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+nav{
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.fa-bars{
+    /* Font-size increases the size of the menu bar */
+    font-size: 1.5rem;
+    color: #9c9b9b;
+    cursor: pointer;
+    display: block;
+}
+
+.fa-bars:hover{
+    color: black;
+}
+
+.menu a{
+color: grey;
+letter-spacing: 0.1rem;
+display: block;
+padding: 0.5rem 1rem;
+transition: all 0.3s linear;
+}
+
+.menu a:hover{
+    background: #f8a5af;
+    color: #e94949;
+    padding-left: 1.5rem;
+}
+.menu{
+    height: 0;
+    /* this hides the menu when the screen is small */
+    overflow: hidden;
+    transition: all 0.3 linear;
+}
+
+.show-menu{
+    height: 10rem;
+}
+.nav-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem; 
+}
+
+@media (min-width: 880px){
+    .nav-main{
+        max-width:1170px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    .nav-header{
+        padding: 0;
+    }
+    /* This disappears the bar when the screen is above min-width */
+    .fa-bars{
+        display: none !important;
+    }
+    .menu{
+        height: auto;
+        display: flex;
+    }
+
+    .menu a{
+        padding: 0;
+        margin: 0 0.5rem;
+    }
+
+    .menu a:hover{
+        padding: 0;
+        background: transparent;
+    }
+}
+
