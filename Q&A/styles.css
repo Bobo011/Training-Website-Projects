@@ -53,15 +53,15 @@ p {
     display: none;
 }
 
-.show-text.question-text{
+.show-text .question-text{
     /* since question-text display is none, here the display block will reveal the text */
     display: block;
 }
 
-.show-text.minus-icon{
+.show-text .minus-icon{
     display: inline;
 }
 
-.show-text.plus-icon{
+.show-text .plus-icon{
     display: none;
 }
