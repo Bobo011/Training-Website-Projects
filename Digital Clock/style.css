@@ -38,17 +38,17 @@ body {
     background-color: rgb(75, 75, 239);
 }
 
-.number-hours {
+.number-hours{
     font-size: 55px;
     letter-spacing: 3px;
     font-weight: 550;
 }
-.number-minutes {
+.number-minutes{
     font-size: 55px;
     letter-spacing: 3px;
     font-weight: 550;
 }
-.number-seconds {
+.number-seconds{
     font-size: 55px;
     letter-spacing: 3px;
     font-weight: 550;
