@@ -36,8 +36,12 @@ label{
 }
 
 .text{
+    font-size: 20px;
+    letter-spacing: 1px;
+    vertical-align: top;
     width: 340px;
     height: 100px;
+    text-align: left;
 }
 
 .remaining{
