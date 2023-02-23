@@ -32,9 +32,9 @@ body {
     background-color: orangered;
     width: 0;
     height: 0;
-    /* positions element to the center */
-    left: 50%;
-    top: 50%;
+    /* since before is not part of the DOM we have to create variables within css*/
+    left: var(--xPos);
+    top: var(--yPos);
     transform: translate(-50%, -50%);
     border-radius: 50%;
     transition: width .5s, height 0.5s;
