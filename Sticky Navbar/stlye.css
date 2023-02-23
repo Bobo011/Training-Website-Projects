@@ -1,0 +1,10 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.top-container{
+    width: 100%;
+    
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-ehnvEGQE6MSyVVNSdr1sfV-IYSgc696g9V7K9DDxUA&s');
+}
