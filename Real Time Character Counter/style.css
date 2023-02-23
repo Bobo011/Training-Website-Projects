@@ -10,8 +10,8 @@ body{
 }
 
 .container{
-    width: 400px;
-    height: 250px;
+    width: 347px;
+    height: 200px;
     background-color: pink;
     border-radius: 10px;
     display: flex;
@@ -36,8 +36,8 @@ label{
 }
 
 .text{
-    width: 310px;
-    height: 150px;
+    width: 340px;
+    height: 100px;
 }
 
 .remaining{
@@ -51,3 +51,4 @@ label{
 .count{
     color: gray;
 }
+
