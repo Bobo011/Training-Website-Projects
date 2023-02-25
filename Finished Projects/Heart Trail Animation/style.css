@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: black;
+    /* hides the scrool bar */
+    overflow: hidden;
+}
+
+span{
+    background:url('https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_54-256.png') ;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-size: cover;
+    /* stops the hearts from creating a double */
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    /* this calls the animation @keyframes  */
+    animation: animate 6s linear;
+}
+
+@keyframes animate{
+    0%{
+        transform: translate(-50%,-50%);
+        opacity: 1; 
+        /* these change the heart colors */
+        filter: hue-rotate(0); 
+    }
+    100%{
+        transform: translate(-50%,-5000%);
+        opacity: 0;
+        /* these change the heart colors */
+        filter: hue-rotate(720deg);  
+    }
+
+}
