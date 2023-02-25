@@ -42,19 +42,21 @@ button{
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: #000;
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
+    opacity: 1;
   }
   
   /* Style the close button */
   .close-button {
-    position: fixed;
-  top: 20px;
-  right: 20px;
+position: fixed;
+  top: -200px;
+  right: -570px;
   font-size: 24px;
-  color: #fff;
   z-index: 10000;
+  color: white;
+  background-color: black;
   }
 
   body.overflow-hidden {
