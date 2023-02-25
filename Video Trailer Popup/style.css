@@ -1,0 +1,62 @@
+body{
+    margin: 0;
+    color: aliceblue;
+    background-color: black;
+    
+}
+
+img{
+    width: 420px;
+    height: 250px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 100px 300px;
+}
+
+.title{
+    font-size:30px;
+    margin: 14px 0;
+    font-weight: 550;
+}
+
+.text{
+    margin-bottom: 20px;
+}
+
+button{
+    height: 30px;
+    cursor: pointer;
+}
+
+
+/* Style the video popup */
+.video-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #000;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Style the close button */
+  .close-button {
+    position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: #fff;
+  z-index: 10000;
+  }
+
+  body.overflow-hidden {
+    overflow: hidden;
+  }
