@@ -40,7 +40,7 @@ snareAudioEl.play();
 })
 document.addEventListener('keydown', (event) => {
     if (event.keyCode === 83 || event.which === 83) {
-      // Key code 83 corresponds to the "C" key
+      // Key code 83 corresponds to the "S" key
       snareAudioEl.play();
     }
   });
@@ -52,7 +52,7 @@ tomAudioEl.play();
 })
 document.addEventListener('keydown', (event) => {
     if (event.keyCode === 84 || event.which === 84) {
-      // Key code 84 corresponds to the "C" key
+      // Key code 84 corresponds to the "T" key
       tomAudioEl.play();
     }
   });
