@@ -34,27 +34,30 @@ background-color: rgb(203, 203, 231);
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
     cursor: pointer;
+    background-size:cover ;
 }
 
 .square:hover{
     color: pink;
+    
 }
 
 #square-1{
+    
     background-image: url('1.jpg');
-    background-size:cover ;
+    
 }
 #square-2{
     background-image: url('2.jpg');
-    background-size:cover ;
+    
 }
 #square-3{
     background-image: url('3.jpeg');
-    background-size:cover ;
+    
 }
 #square-4{
     background-image: url('4.jpg');
-    background-size:cover ;
+    
 }
 
 
