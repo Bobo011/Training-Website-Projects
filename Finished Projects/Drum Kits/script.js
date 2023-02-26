@@ -20,7 +20,7 @@ squareSound(tomSquareEl,tomAudioEl,84);
 function squareSound(el,sound,code){
     el.addEventListener("click", () => {
         sound.play();
-          el.style.backgroundSize = '150%';
+          el.style.backgroundSize = '110%';
         });
         document.addEventListener("keydown", (event) => {
           if (event.keyCode === code || event.which === code) {
@@ -29,7 +29,7 @@ function squareSound(el,sound,code){
             //S key: 83
             //T key: 84
             sound.play();
-            el.style.backgroundSize = '150%';
+            el.style.backgroundSize = '110%';
           }
         
           setTimeout(function() {
