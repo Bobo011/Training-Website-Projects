@@ -7,6 +7,7 @@ const videoPopup = document.querySelector(".video-popup");
 // Add click event listener to popup button
 buttonEl.addEventListener("click", function() {
    // Show the video popup and hide the background
+   
    videoPopup.style.display = "block";
    document.body.style.overflow = "hidden";
    
@@ -35,6 +36,7 @@ buttonEl.addEventListener("click", function() {
  window.addEventListener("click", function(event) {
    if (event.target == videoPopup) {
      // Hide the video popup and show the background
+
      videoPopup.style.display = "none";
      document.body.style.overflow = "auto";
      
