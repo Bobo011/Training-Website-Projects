@@ -13,7 +13,7 @@ const options = {
 const apiUrl = 'https://api.api-ninjas.com/v1/dadjokes?limit=1'
 
 async function getJoke() {
-
+//thi
 try {
     //Shows up when the Data is being fetched and disables the button until it is done
     joke.innerText= 'Updating...';
@@ -25,9 +25,13 @@ const data = await response.json()
 //Enables the button after the data is fetched
 buttonEl.disabled = false;
 buttonEl.innerText = 'Tell Me a Joke'
-jokeEl.innerHTML = data[0].joke;
+jokeEl.innerText = data[0].joke;
 } catch (error) {
-    
+
+    jokeEl.innerText = 'An error Happened, Try again Later';
+    buttonEl.disabled = true;
+buttonEl.innerText = 'Tell Me a Joke'
+    console.log(error);
 }
 
 
