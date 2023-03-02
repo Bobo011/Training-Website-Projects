@@ -15,8 +15,8 @@ try {
     buttonEl.innerText = 'Loading...'
     authorEl.style.display ='block'
     await fetch(url)
-      .then((data) => data.json())
-      .then((item) => {
+       .then((data) => data.json())
+       .then((item) => {
         quoteEl.innerText = `${doubleQuote1}${item.content}${doubleQuote2}`;
         authorEl.innerText = '-'+ item.author;
         buttonEl.disabled = false;
