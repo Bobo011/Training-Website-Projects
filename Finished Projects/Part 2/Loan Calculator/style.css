@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.main-container {
+    box-shadow: rgba(0, 0, 0, .3);
+    border-radius: 7px;
+    padding: 15px;
+    background-color: rgb(17, 144, 144);
+    height: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+
+.main-container label {
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+.main-container input {
+    width: 97%;
+    margin-bottom: 13px;
+    box-shadow: rgba(0, 0, 0, .3);
+}
+
+.main-container input:hover {
+    box-shadow: rgba(0, 0, 0, .5);
+    opacity: 0.8;
+}
+
+.title {
+    letter-spacing: 1px;
+}
+
+.monthly {
+    font-size: 20px;
+}
