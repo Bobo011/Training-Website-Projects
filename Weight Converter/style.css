@@ -7,4 +7,57 @@ min-height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
+font-family: 'Courier New', Courier, monospace;
+}
+
+.main-container{
+    color: rgb(6, 112, 112);
+    width: 360px;
+    height: 170px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+box-shadow: 0 5px 10px rgba(0,0,0,.4);
+    background-color: rgba(255, 255, 255, .4);
+    border-radius: 7px;
+
+}
+
+.title{
+letter-spacing: 1px;
+font-weight: 600;
+}
+
+.input-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+input{
+    margin-left: 15px;
+    padding: 4px;
+    width: 90%;
+}
+input::placeholder{
+    color: black;
+    font-weight: 600;
+}
+
+input:hover{
+    opacity: .9;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+}
+
+label,.weight-info{
+    font-weight: 700;
+}
+
+.invalid-number{
+
+color: red;
+font-weight: 600;
+display: none;
 }
