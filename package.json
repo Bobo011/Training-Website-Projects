@@ -1,0 +1,24 @@
+{
+  "name": "training-website-projects",
+  "version": "1.0.0",
+  "description": "Training Websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bobo011/Training-Website-Projects.git"
+  },
+  "keywords": [
+    "Training",
+    "Websites",
+    "Bobo011"
+  ],
+  "author": "Bobo011",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bobo011/Training-Website-Projects/issues"
+  },
+  "homepage": "https://github.com/Bobo011/Training-Website-Projects#readme"
+}
