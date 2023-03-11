@@ -1,7 +1,12 @@
-const grandP =document.querySelector('.grand-parent')
+const person = {
+    name: 'George',
+    address:{
+street:'Leonidze str'
+    }
+}
 
-const children = grandP.querySelectorAll('.child')
+// if(person!= null && person.address !=null){
+//     console.log(person.address.street);
+// }
 
-children.forEach((e)=>{
-e.style.color = 'orange'
-})
+console.log(person && person.address && person.address.street||'Default')
