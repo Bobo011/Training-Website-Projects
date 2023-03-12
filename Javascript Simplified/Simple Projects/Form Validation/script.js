@@ -10,12 +10,21 @@ const passwordEl = document.querySelector('#password')
 const passwordConfirmationEl = document.querySelector('#password-confirmation')
 const termsEl = document.querySelector('#terms')
 
+function showErrorScreen(){
+    errorsEl.style.display = 'block'
+    errorTitleEl.style.display = 'block'
+    errorsListEl.style.display = 'block'
+}
+
+const errorMessages =[' 1. Ensure the username is at least 6 characters long','2. Ensure the password is at least 10 characters long','3. Ensure the password and confirmation password match',' 4. Ensure the terms checkbox is checked']
 
 
 
 // TODO: Create an event listener for when the form is submitted and do the following inside of it.
 formEl.addEventListener('submit',(e)=>{
 e.preventDefault()
+
+checkConditions()
 
 })
 //    TODO: Create an array to store all error messages and clear any old error messages
@@ -25,6 +34,14 @@ e.preventDefault()
 //      3. Ensure the password and confirmation password match
 //      4. Ensure the terms checkbox is checked
 //    TODO: If there are any errors then prevent the form from submitting and show the error messages
+
+function checkConditions(){
+    usernameEl.addEventListener('input',()=>{
+        if(usernameEl.value.length < 6){
+            console.log('Error');
+        }
+    })
+}
 
 // TODO: Define this function
 function clearErrors() {
