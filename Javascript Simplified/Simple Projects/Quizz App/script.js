@@ -35,10 +35,12 @@ quizForm.addEventListener("submit", (e) => {
       console.log("No");
     }
 
-    if(score == 3){
-        console.log('Victory');
-    }
   });
+  if(score == 3){
+    
+    alert.style.display= 'block'
+    setTimeout(()=>{alert.style.display= 'none'},5000)
+}
 });
 
 // TODO: 3. Create a submit event listener for the form that does the following.
