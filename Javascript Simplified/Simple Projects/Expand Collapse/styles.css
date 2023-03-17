@@ -40,3 +40,20 @@ body {
   }
 
 
+.button-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+  #add-card{
+    padding: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+  }
+
+  #add-card:hover{
+    background-color: rgba(255, 255, 255, .2);
+    /* border: none; */
+  }
+
+
