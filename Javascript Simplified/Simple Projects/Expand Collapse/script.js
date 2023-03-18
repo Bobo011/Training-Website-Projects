@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
+
   const addCardButtonEl = document.querySelector('#add-card');
   const cardTemplateEl = document.querySelector('#card-template');
 
   let titleNum = 5;
 
   addCardButtonEl.addEventListener('click', () => {
-    const newSection = cardTemplateEl.cloneNode(true);
+    const newSection = cardTemplateEl.content.cloneNode(true);
     newSection.querySelector('.card-title').innerText = `Title ${titleNum}`;
     titleNum++;
     document.body.appendChild(newSection);
@@ -19,4 +19,4 @@ document.addEventListener("DOMContentLoaded", () => {
     cardBody.classList.toggle("show");
     e.target.innerText = e.target.innerText === "Expand" ? "Collapse" : "Expand";
   });
-});
+
