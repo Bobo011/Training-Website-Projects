@@ -1,59 +1,58 @@
 body {
-    background-color: #DCDCDC;
-    padding: 1rem;
-    margin: 0;
-  }
-  
-  .card {
-    border: 1px solid black;
-    margin-bottom: 1rem;
-    background-color: white;
-  }
-  
-  .card:last-child {
-    margin-bottom: 0;
-  }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-    padding: .5rem;
-    font-size: 2rem;
-    align-items: center;
-    margin-bottom: -1px;
-  }
-  
-  .card-body {
-    padding: 0 .5rem;
-    height: 0;
-    overflow: hidden;
-  }
-  
-  .card-body.show {
-    height: auto;
-    padding: .5rem;
-  }
-  
-  button {
-    cursor: pointer;
-  }
+  background-color: #DCDCDC;
+  padding: 1rem;
+  margin: 0;
+}
 
+.card {
+  border: 1px solid black;
+  margin-bottom: 1rem;
+  background-color: white;
+}
 
-.button-container{
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: .5rem;
+  font-size: 2rem;
+  align-items: center;
+  margin-bottom: -1px;
+}
+
+.card-body {
+  padding: 0 .5rem;
+  height: 0;
+  overflow: hidden;
+}
+
+.card-body.show {
+  height: auto;
+  padding: .5rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: calc(1rem + 1px);
 }
 
-  #add-card{
-    padding: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
-  }
+#add-card {
+  padding: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+  margin-top: 1rem;
+}
 
-  #add-card:hover{
-    background-color: rgba(255, 255, 255, .2);
-    /* border: none; */
-  }
-
-
+#add-card:hover {
+  background-color: rgba(255, 255, 255, .2);
+  /* border: none; */
+}
