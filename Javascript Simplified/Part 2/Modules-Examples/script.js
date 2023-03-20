@@ -1,27 +1,8 @@
-
-
-const http = require('http')
-const fs = require('fs')
-const port = 3000   
-
-const server = http.createServer(function(req,res){
-    res.writeHead(200, {'Content-Type':'text/html'})
-    fs.readFile('index.html',function(error,data){
-        if(error){
-            res.writeHead(404)
-            res.write('Error: File Not Found')
-        }else{
-            res.write(data)
-        }
-        res.end()
-    })
-})
-
-server.listen(port, function(error){
-    if(error){
-        console.log('error occurred',error);
-    }else {
-        console.log(`Server is listening on port ${port}`);
-    }
-})
+ //using 'as' we can rename an imported variable or function
+ //in this case 'me' is written this way cause it is not a default export, anything else must be written between {   }
+ import me,{sally,rich as poor, printObj as printedObject} from './script2.mjs';
+ console.log(me);
+ console.log(sally);
+ console.log(poor);
+ console.log(printedObject(me));
 
