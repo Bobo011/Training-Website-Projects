@@ -4,7 +4,8 @@
   "description": "Training Websites",
   "main": "index.js",
   "scripts": {
-    "start": "parcel Parcel-Example/index.html"
+    "start": "parcel Parcel-Example/index.html",
+    "build":"parcel Parcel-Example/index.html"
   },
   "repository": {
     "type": "git",
