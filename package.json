@@ -2,7 +2,7 @@
   "name": "training-website-projects",
   "version": "1.0.0",
   "description": "Training Websites",
-  "type": "module",
+
   "main": "index.js",
   "scripts": {
     "test": "1"
