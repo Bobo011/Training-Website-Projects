@@ -23,5 +23,8 @@
   "homepage": "https://github.com/Bobo011/Training-Website-Projects#readme",
   "dependencies": {
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
