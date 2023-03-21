@@ -2,7 +2,6 @@
   "name": "training-website-projects",
   "version": "1.0.0",
   "description": "Training Websites",
-
   "main": "index.js",
   "scripts": {
     "test": "1"
@@ -21,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Bobo011/Training-Website-Projects/issues"
   },
-  "homepage": "https://github.com/Bobo011/Training-Website-Projects#readme"
+  "homepage": "https://github.com/Bobo011/Training-Website-Projects#readme",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
 }
