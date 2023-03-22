@@ -22939,8 +22939,8 @@ var datePicker = container.querySelector('.date-picker');
 var datePickerBtnEl = container.querySelector('.date-picker-button');
 
 //container buttons
-var previousMonthBtnEl = document.querySelector('.prev-month-button month-button');
-var nextMonthBtnEl = document.querySelector('.next-month-button month-button');
+var previousMonthBtnEl = document.querySelector('.prev-month-button');
+var nextMonthBtnEl = document.querySelector('.next-month-button');
 var dateButtons = document.querySelectorAll('.date');
 
 //Formatting the dates
@@ -22994,7 +22994,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49835" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53872" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

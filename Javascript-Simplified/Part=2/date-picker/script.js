@@ -1,5 +1,5 @@
 // JavaScript code
-import { format,} from 'date-fns';
+import { format} from 'date-fns';
 
 
 const container = document.querySelector('.date-picker-container');
@@ -9,9 +9,10 @@ const datePicker = container.querySelector('.date-picker');
 const datePickerBtnEl = container.querySelector('.date-picker-button');
 
 //container buttons
-const previousMonthBtnEl = document.querySelector('.prev-month-button month-button')
-const nextMonthBtnEl = document.querySelector('.next-month-button month-button')
+const previousMonthBtnEl = document.querySelector('.prev-month-button')
+const nextMonthBtnEl = document.querySelector('.next-month-button')
 const dateButtons = document.querySelectorAll('.date');
+
 
 //Formatting the dates
 let currentDate = new Date();
