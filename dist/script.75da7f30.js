@@ -22935,13 +22935,39 @@ var _dateFns = require("date-fns");
 var container = document.querySelector('.date-picker-container');
 var currentMonth = container.querySelector('.current-month');
 var datePicker = container.querySelector('.date-picker');
+//main button
 var datePickerBtnEl = container.querySelector('.date-picker-button');
+
+//container buttons
 var previousMonthBtnEl = document.querySelector('.prev-month-button month-button');
 var nextMonthBtnEl = document.querySelector('.next-month-button month-button');
+var dateButtons = document.querySelectorAll('.date');
+
+//Formatting the dates
 var currentDate = new Date();
 var formattedDate = (0, _dateFns.format)(currentDate, 'MMMM do, yyyy');
+var formattedDateMonth = (0, _dateFns.format)(currentDate, 'MMMM - yyyy');
+
+//Button will display the current day, unless changed
+datePickerBtnEl.innerText = formattedDate;
+//current months text
+currentMonth.innerText = formattedDateMonth;
+
+//Toggle between showing and un-showing the date-picker container
 datePickerBtnEl.addEventListener('click', function () {
   datePicker.classList.toggle('show');
+});
+dateButtons.forEach(function (button) {
+  button.addEventListener('click', function () {
+    // Remove "selected" class from all other buttons
+    dateButtons.forEach(function (otherButton) {
+      if (otherButton !== button) {
+        otherButton.classList.remove('selected');
+      }
+    });
+    // Add "selected" class to clicked button
+    button.classList.add('selected');
+  });
 });
 },{"date-fns":"../../../node_modules/date-fns/esm/index.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
