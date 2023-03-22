@@ -23002,6 +23002,10 @@ dateButtons.forEach(function (button) {
     });
     // Add "selected" class to clicked button
     button.classList.add('selected');
+
+    // Update datePickerBtnEl with the selected date
+    var selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+    datePickerBtnEl.innerText = (0, _dateFns.format)(selectedDate, dateFormat);
   });
 });
 },{"date-fns":"../../../node_modules/date-fns/esm/index.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {

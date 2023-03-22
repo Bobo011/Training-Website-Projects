@@ -66,14 +66,18 @@ function renderDates() {
 renderDates();
 
 dateButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Remove "selected" class from all other buttons
-    dateButtons.forEach(otherButton => {
-      if (otherButton !== button) {
-        otherButton.classList.remove('selected');
-      }
+    button.addEventListener('click', () => {
+      // Remove "selected" class from all other buttons
+      dateButtons.forEach(otherButton => {
+        if (otherButton !== button) {
+          otherButton.classList.remove('selected');
+        }
+      });
+      // Add "selected" class to clicked button
+      button.classList.add('selected');
+      
+      // Update datePickerBtnEl with the selected date
+      const selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+      datePickerBtnEl.innerText = format(selectedDate, dateFormat);
     });
-    // Add "selected" class to clicked button
-    button.classList.add('selected');
   });
-});
