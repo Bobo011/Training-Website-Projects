@@ -1,6 +1,4 @@
-// JavaScript code
-import { format, subMonths, addMonths } from 'date-fns';
-
+import { format, subMonths, addMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth } from 'date-fns';
 
 const container = document.querySelector('.date-picker-container');
 const currentMonth = container.querySelector('.current-month');
@@ -13,57 +11,69 @@ const previousMonthBtnEl = document.querySelector('.prev-month-button')
 const nextMonthBtnEl = document.querySelector('.next-month-button')
 const dateButtons = document.querySelectorAll('.date');
 
+//Format for displaying the current date
+const dateFormat = 'MMMM do, yyyy';
+const monthFormat = 'MMMM - yyyy';
 
-
-
-
-//Formatting the dates
+//Initial date
 let currentDate = new Date();
-const formattedDate = format(currentDate, 'MMMM do, yyyy');
-const formattedDateMonth = format(currentDate, 'MMMM - yyyy');
-
 
 //Button will display the current day, unless changed
-datePickerBtnEl.innerText = formattedDate;
-//current months text
-currentMonth.innerText = formattedDateMonth
-
-
-
-
+datePickerBtnEl.innerText = format(currentDate, dateFormat);
+//current month's text
+currentMonth.innerText = format(currentDate, monthFormat);
 
 //Toggle between showing and un-showing the date-picker container
 datePickerBtnEl.addEventListener('click',()=>{
     datePicker.classList.toggle('show')
 })
 
+//update the current month
+function updateCurrentMonthText() {
+  currentMonth.innerText = format(currentDate, monthFormat);
+}
+
+previousMonthBtnEl.addEventListener('click', () => {
+  currentDate = subMonths(currentDate, 1);
+  updateCurrentMonthText();
+  renderDates();
+});
+
+nextMonthBtnEl.addEventListener('click', () => {
+  currentDate = addMonths(currentDate, 1);
+  updateCurrentMonthText();
+  renderDates();
+});
+
+function renderDates() {
+  const firstDayOfMonth = startOfMonth(currentDate);
+  const lastDayOfMonth = endOfMonth(currentDate);
+  const firstDayOfCalendar = startOfWeek(firstDayOfMonth, { weekStartsOn: 0 });
+  const lastDayOfCalendar = endOfWeek(lastDayOfMonth, { weekStartsOn: 0 });
+  
+  dateButtons.forEach((button, index) => {
+    const date = new Date(firstDayOfCalendar.getTime() + (index * 24 * 60 * 60 * 1000));
+    button.innerText = date.getDate();
+    
+    if (!isSameMonth(date, currentDate)) {
+      button.classList.add('date-picker-other-month-date');
+    } else {
+      button.classList.remove('date-picker-other-month-date');
+    }
+  });
+}
+
+renderDates();
 
 dateButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Remove "selected" class from all other buttons
-      dateButtons.forEach(otherButton => {
-        if (otherButton !== button) {
-          otherButton.classList.remove('selected');
-        }
-      });
-      // Add "selected" class to clicked button
-      button.classList.add('selected');
+  button.addEventListener('click', () => {
+    // Remove "selected" class from all other buttons
+    dateButtons.forEach(otherButton => {
+      if (otherButton !== button) {
+        otherButton.classList.remove('selected');
+      }
     });
+    // Add "selected" class to clicked button
+    button.classList.add('selected');
   });
-
-//update the current month
-  function updateCurrentMonthText() {
-    currentMonth.innerText = format(currentDate, 'MMMM yyyy');
-  }
-  
-  previousMonthBtnEl.addEventListener('click', () => {
-    currentDate = subMonths(currentDate, 1);
-    updateCurrentMonthText();
-  });
-  
-  nextMonthBtnEl.addEventListener('click', () => {
-    currentDate = addMonths(currentDate, 1);
-    updateCurrentMonthText();
-  });
-  
-  updateCurrentMonthText();
+});

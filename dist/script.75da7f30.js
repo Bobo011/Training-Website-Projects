@@ -22930,8 +22930,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 var _dateFns = require("date-fns");
-// JavaScript code
-
 var container = document.querySelector('.date-picker-container');
 var currentMonth = container.querySelector('.current-month');
 var datePicker = container.querySelector('.date-picker');
@@ -22943,20 +22941,57 @@ var previousMonthBtnEl = document.querySelector('.prev-month-button');
 var nextMonthBtnEl = document.querySelector('.next-month-button');
 var dateButtons = document.querySelectorAll('.date');
 
-//Formatting the dates
+//Format for displaying the current date
+var dateFormat = 'MMMM do, yyyy';
+var monthFormat = 'MMMM - yyyy';
+
+//Initial date
 var currentDate = new Date();
-var formattedDate = (0, _dateFns.format)(currentDate, 'MMMM do, yyyy');
-var formattedDateMonth = (0, _dateFns.format)(currentDate, 'MMMM - yyyy');
 
 //Button will display the current day, unless changed
-datePickerBtnEl.innerText = formattedDate;
-//current months text
-currentMonth.innerText = formattedDateMonth;
+datePickerBtnEl.innerText = (0, _dateFns.format)(currentDate, dateFormat);
+//current month's text
+currentMonth.innerText = (0, _dateFns.format)(currentDate, monthFormat);
 
 //Toggle between showing and un-showing the date-picker container
 datePickerBtnEl.addEventListener('click', function () {
   datePicker.classList.toggle('show');
 });
+
+//update the current month
+function updateCurrentMonthText() {
+  currentMonth.innerText = (0, _dateFns.format)(currentDate, monthFormat);
+}
+previousMonthBtnEl.addEventListener('click', function () {
+  currentDate = (0, _dateFns.subMonths)(currentDate, 1);
+  updateCurrentMonthText();
+  renderDates();
+});
+nextMonthBtnEl.addEventListener('click', function () {
+  currentDate = (0, _dateFns.addMonths)(currentDate, 1);
+  updateCurrentMonthText();
+  renderDates();
+});
+function renderDates() {
+  var firstDayOfMonth = (0, _dateFns.startOfMonth)(currentDate);
+  var lastDayOfMonth = (0, _dateFns.endOfMonth)(currentDate);
+  var firstDayOfCalendar = (0, _dateFns.startOfWeek)(firstDayOfMonth, {
+    weekStartsOn: 0
+  });
+  var lastDayOfCalendar = (0, _dateFns.endOfWeek)(lastDayOfMonth, {
+    weekStartsOn: 0
+  });
+  dateButtons.forEach(function (button, index) {
+    var date = new Date(firstDayOfCalendar.getTime() + index * 24 * 60 * 60 * 1000);
+    button.innerText = date.getDate();
+    if (!(0, _dateFns.isSameMonth)(date, currentDate)) {
+      button.classList.add('date-picker-other-month-date');
+    } else {
+      button.classList.remove('date-picker-other-month-date');
+    }
+  });
+}
+renderDates();
 dateButtons.forEach(function (button) {
   button.addEventListener('click', function () {
     // Remove "selected" class from all other buttons
@@ -22969,20 +23004,6 @@ dateButtons.forEach(function (button) {
     button.classList.add('selected');
   });
 });
-
-//update the current month
-function updateCurrentMonthText() {
-  currentMonth.innerText = (0, _dateFns.format)(currentDate, 'MMMM yyyy');
-}
-previousMonthBtnEl.addEventListener('click', function () {
-  currentDate = (0, _dateFns.subMonths)(currentDate, 1);
-  updateCurrentMonthText();
-});
-nextMonthBtnEl.addEventListener('click', function () {
-  currentDate = (0, _dateFns.addMonths)(currentDate, 1);
-  updateCurrentMonthText();
-});
-updateCurrentMonthText();
 },{"date-fns":"../../../node_modules/date-fns/esm/index.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
