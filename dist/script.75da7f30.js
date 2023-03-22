@@ -23004,7 +23004,16 @@ dateButtons.forEach(function (button) {
     button.classList.add('selected');
 
     // Update datePickerBtnEl with the selected date
-    var selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+    var selectedDate;
+    if (button.classList.contains('date-picker-other-month-date')) {
+      if (button.innerText < 15) {
+        selectedDate = (0, _dateFns.subMonths)(currentDate, 1);
+      } else {
+        selectedDate = (0, _dateFns.addMonths)(currentDate, 1);
+      }
+    } else {
+      selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+    }
     datePickerBtnEl.innerText = (0, _dateFns.format)(selectedDate, dateFormat);
   });
 });

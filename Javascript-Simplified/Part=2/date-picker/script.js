@@ -77,7 +77,17 @@ dateButtons.forEach(button => {
       button.classList.add('selected');
       
       // Update datePickerBtnEl with the selected date
-      const selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+      let selectedDate;
+      if (button.classList.contains('date-picker-other-month-date')) {
+        if (button.innerText < 15) {
+          selectedDate = subMonths(currentDate, 1);
+        } else {
+          selectedDate = addMonths(currentDate, 1);
+        }
+      } else {
+        selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+      }
       datePickerBtnEl.innerText = format(selectedDate, dateFormat);
     });
+    
   });
