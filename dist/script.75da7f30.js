@@ -22930,7 +22930,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 var _dateFns = require("date-fns");
-console.log(_dateFns.compareAsc);
+// JavaScript code
+
+var container = document.querySelector('.date-picker-container');
+var currentMonth = container.querySelector('.current-month');
+var datePicker = container.querySelector('.date-picker');
+var datePickerBtnEl = container.querySelector('.date-picker-button');
+var previousMonthBtnEl = document.querySelector('.prev-month-button month-button');
+var nextMonthBtnEl = document.querySelector('.next-month-button month-button');
+var currentDate = new Date();
+var formattedDate = (0, _dateFns.format)(currentDate, 'MMMM do, yyyy');
+datePickerBtnEl.addEventListener('click', function () {
+  datePicker.classList.toggle('show');
+});
 },{"date-fns":"../../../node_modules/date-fns/esm/index.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -22956,7 +22968,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62680" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49835" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
