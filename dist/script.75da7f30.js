@@ -22969,6 +22969,20 @@ dateButtons.forEach(function (button) {
     button.classList.add('selected');
   });
 });
+
+//update the current month
+function updateCurrentMonthText() {
+  currentMonth.innerText = (0, _dateFns.format)(currentDate, 'MMMM yyyy');
+}
+previousMonthBtnEl.addEventListener('click', function () {
+  currentDate = (0, _dateFns.subMonths)(currentDate, 1);
+  updateCurrentMonthText();
+});
+nextMonthBtnEl.addEventListener('click', function () {
+  currentDate = (0, _dateFns.addMonths)(currentDate, 1);
+  updateCurrentMonthText();
+});
+updateCurrentMonthText();
 },{"date-fns":"../../../node_modules/date-fns/esm/index.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

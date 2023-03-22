@@ -1,5 +1,5 @@
 // JavaScript code
-import { format} from 'date-fns';
+import { format, subMonths, addMonths } from 'date-fns';
 
 
 const container = document.querySelector('.date-picker-container');
@@ -12,6 +12,9 @@ const datePickerBtnEl = container.querySelector('.date-picker-button');
 const previousMonthBtnEl = document.querySelector('.prev-month-button')
 const nextMonthBtnEl = document.querySelector('.next-month-button')
 const dateButtons = document.querySelectorAll('.date');
+
+
+
 
 
 //Formatting the dates
@@ -48,4 +51,19 @@ dateButtons.forEach(button => {
     });
   });
 
-
+//update the current month
+  function updateCurrentMonthText() {
+    currentMonth.innerText = format(currentDate, 'MMMM yyyy');
+  }
+  
+  previousMonthBtnEl.addEventListener('click', () => {
+    currentDate = subMonths(currentDate, 1);
+    updateCurrentMonthText();
+  });
+  
+  nextMonthBtnEl.addEventListener('click', () => {
+    currentDate = addMonths(currentDate, 1);
+    updateCurrentMonthText();
+  });
+  
+  updateCurrentMonthText();
