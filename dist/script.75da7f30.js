@@ -23000,6 +23000,8 @@ dateButtons.forEach(function (button) {
         otherButton.classList.remove('selected');
       }
     });
+    // Remove "show" class from datePicker element
+    datePicker.classList.remove('show');
     // Add "selected" class to clicked button
     button.classList.add('selected');
 
