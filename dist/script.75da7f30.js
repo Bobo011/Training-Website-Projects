@@ -22930,102 +22930,167 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 var _dateFns = require("date-fns");
-var container = document.querySelector('.date-picker-container');
-var currentMonth = container.querySelector('.current-month');
-var datePicker = container.querySelector('.date-picker');
-//main button
-var datePickerBtnEl = container.querySelector('.date-picker-button');
-
-//container buttons
-var previousMonthBtnEl = document.querySelector('.prev-month-button');
-var nextMonthBtnEl = document.querySelector('.next-month-button');
-var dateButtons = document.querySelectorAll('.date');
-
-//Format for displaying the current date
-var dateFormat = 'MMMM do, yyyy';
-var monthFormat = 'MMMM - yyyy';
-
-//Initial date
+var datePickerButton = document.querySelector(".date-picker-button");
+var datePicker = document.querySelector(".date-picker");
+var datePickerHeaderText = document.querySelector(".current-month");
+var previousMonthButton = document.querySelector(".prev-month-button");
+var nextMonthButton = document.querySelector(".next-month-button");
+var dateGrid = document.querySelector(".date-picker-grid-dates");
 var currentDate = new Date();
-
-//Button will display the current day, unless changed
-datePickerBtnEl.innerText = (0, _dateFns.format)(currentDate, dateFormat);
-//current month's text
-currentMonth.innerText = (0, _dateFns.format)(currentDate, monthFormat);
-
-//Toggle between showing and un-showing the date-picker container
-datePickerBtnEl.addEventListener('click', function () {
-  datePicker.classList.toggle('show');
+datePickerButton.addEventListener("click", function () {
+  datePicker.classList.toggle("show");
+  var selectedDate = (0, _dateFns.fromUnixTime)(datePickerButton.dataset.selectedDate);
+  currentDate = selectedDate;
+  setupDatePicker(selectedDate);
 });
-
-//update the current month
-function updateCurrentMonthText() {
-  currentMonth.innerText = (0, _dateFns.format)(currentDate, monthFormat);
+function setDate(date) {
+  datePickerButton.innerText = (0, _dateFns.format)(date, "MMMM do, yyyy");
+  datePickerButton.dataset.selectedDate = (0, _dateFns.getUnixTime)(date);
 }
-previousMonthBtnEl.addEventListener('click', function () {
-  currentDate = (0, _dateFns.subMonths)(currentDate, 1);
-  updateCurrentMonthText();
-  renderDates();
-});
-nextMonthBtnEl.addEventListener('click', function () {
-  currentDate = (0, _dateFns.addMonths)(currentDate, 1);
-  updateCurrentMonthText();
-  renderDates();
-});
-function renderDates() {
-  var firstDayOfMonth = (0, _dateFns.startOfMonth)(currentDate);
-  var lastDayOfMonth = (0, _dateFns.endOfMonth)(currentDate);
-  var firstDayOfCalendar = (0, _dateFns.startOfWeek)(firstDayOfMonth, {
-    weekStartsOn: 0
+function setupDatePicker(selectedDate) {
+  datePickerHeaderText.innerText = (0, _dateFns.format)(currentDate, "MMMM - yyyy");
+  setupDates(selectedDate);
+}
+function setupDates(selectedDate) {
+  var firstWeekStart = (0, _dateFns.startOfWeek)((0, _dateFns.startOfMonth)(currentDate));
+  var lastWeekEnd = (0, _dateFns.endOfWeek)((0, _dateFns.endOfMonth)(currentDate));
+  var dates = (0, _dateFns.eachDayOfInterval)({
+    start: firstWeekStart,
+    end: lastWeekEnd
   });
-  var lastDayOfCalendar = (0, _dateFns.endOfWeek)(lastDayOfMonth, {
-    weekStartsOn: 0
-  });
-  dateButtons.forEach(function (button, index) {
-    var date = new Date(firstDayOfCalendar.getTime() + index * 24 * 60 * 60 * 1000);
-    button.innerText = date.getDate();
+  dateGrid.innerHTML = "";
+  dates.forEach(function (date) {
+    var dateElement = document.createElement("button");
+    dateElement.classList.add("date");
+    dateElement.innerText = date.getDate();
     if (!(0, _dateFns.isSameMonth)(date, currentDate)) {
-      button.classList.add('date-picker-other-month-date');
-    } else {
-      button.classList.remove('date-picker-other-month-date');
+      dateElement.classList.add("date-picker-other-month-date");
     }
-
-    // Add logic to handle dates before the start of the month or after the end of the month
-    if (date < firstDayOfMonth || date > lastDayOfMonth) {
-      button.classList.add('date-picker-other-month-date');
-    } else {
-      button.classList.remove('date-picker-other-month-date');
+    if ((0, _dateFns.isSameDay)(date, selectedDate)) {
+      dateElement.classList.add("selected");
     }
+    console.log(selectedDate);
+    dateElement.addEventListener("click", function () {
+      setDate(date);
+      datePicker.classList.remove("show");
+    });
+    dateGrid.appendChild(dateElement);
   });
 }
-renderDates();
-dateButtons.forEach(function (button) {
-  button.addEventListener('click', function () {
-    // Remove "selected" class from all other buttons
-    dateButtons.forEach(function (otherButton) {
-      if (otherButton !== button) {
-        otherButton.classList.remove('selected');
-      }
-    });
-    // Remove "show" class from datePicker element
-    datePicker.classList.remove('show');
-    // Add "selected" class to clicked button
-    button.classList.add('selected');
-
-    // Update datePickerBtnEl with the selected date
-    var selectedDate;
-    if (button.classList.contains('date-picker-other-month-date')) {
-      if (button.innerText < 15) {
-        selectedDate = (0, _dateFns.subMonths)(currentDate, 1);
-      } else {
-        selectedDate = (0, _dateFns.addMonths)(currentDate, 1);
-      }
-    } else {
-      selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
-    }
-    datePickerBtnEl.innerText = (0, _dateFns.format)(selectedDate, dateFormat);
-  });
+nextMonthButton.addEventListener("click", function () {
+  var selectedDate = (0, _dateFns.fromUnixTime)(datePickerButton.dataset.selectedDate);
+  currentDate = (0, _dateFns.addMonths)(currentDate, 1);
+  setupDatePicker(selectedDate);
 });
+previousMonthButton.addEventListener("click", function () {
+  var selectedDate = (0, _dateFns.fromUnixTime)(datePickerButton.dataset.selectedDate);
+  currentDate = (0, _dateFns.subMonths)(currentDate, 1);
+  setupDatePicker(selectedDate);
+});
+setDate(new Date());
+
+// import { format, subMonths, addMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth } from 'date-fns';
+
+// const container = document.querySelector('.date-picker-container');
+// const currentMonth = container.querySelector('.current-month');
+// const datePicker = container.querySelector('.date-picker');
+// //main button
+// const datePickerBtnEl = container.querySelector('.date-picker-button');
+
+// //container buttons
+// const previousMonthBtnEl = document.querySelector('.prev-month-button')
+// const nextMonthBtnEl = document.querySelector('.next-month-button')
+// const dateButtons = document.querySelectorAll('.date');
+
+// //Format for displaying the current date
+// const dateFormat = 'MMMM do, yyyy';
+// const monthFormat = 'MMMM - yyyy';
+
+// //Initial date
+// let currentDate = new Date();
+
+// //Button will display the current day, unless changed
+// datePickerBtnEl.innerText = format(currentDate, dateFormat);
+// //current month's text
+// currentMonth.innerText = format(currentDate, monthFormat);
+
+// //Toggle between showing and un-showing the date-picker container
+// datePickerBtnEl.addEventListener('click',()=>{
+//     datePicker.classList.toggle('show')
+// })
+
+// //update the current month
+// function updateCurrentMonthText() {
+//   currentMonth.innerText = format(currentDate, monthFormat);
+// }
+
+// previousMonthBtnEl.addEventListener('click', () => {
+//   currentDate = subMonths(currentDate, 1);
+//   updateCurrentMonthText();
+//   renderDates();
+// });
+
+// nextMonthBtnEl.addEventListener('click', () => {
+//   currentDate = addMonths(currentDate, 1);
+//   updateCurrentMonthText();
+//   renderDates();
+// });
+
+// function renderDates() {
+//   const firstDayOfMonth = startOfMonth(currentDate);
+//   const lastDayOfMonth = endOfMonth(currentDate);
+//   const firstDayOfCalendar = startOfWeek(firstDayOfMonth, { weekStartsOn: 0 });
+//   const lastDayOfCalendar = endOfWeek(lastDayOfMonth, { weekStartsOn: 0 });
+
+//   dateButtons.forEach((button, index) => {
+//     const date = new Date(firstDayOfCalendar.getTime() + (index * 24 * 60 * 60 * 1000));
+//     button.innerText = date.getDate();
+
+//     if (!isSameMonth(date, currentDate)) {
+//       button.classList.add('date-picker-other-month-date');
+//     } else {
+//       button.classList.remove('date-picker-other-month-date');
+//     }
+
+//     // Add logic to handle dates before the start of the month or after the end of the month
+//     if (date < firstDayOfMonth || date > lastDayOfMonth) {
+//       button.classList.add('date-picker-other-month-date');
+//     } else {
+//       button.classList.remove('date-picker-other-month-date');
+//     }
+//   });
+// }
+
+// renderDates();
+
+// dateButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+//       // Remove "selected" class from all other buttons
+//       dateButtons.forEach(otherButton => {
+//         if (otherButton !== button) {
+//           otherButton.classList.remove('selected');
+//         }
+//       });
+//       // Remove "show" class from datePicker element
+//       datePicker.classList.remove('show');
+//       // Add "selected" class to clicked button
+//       button.classList.add('selected');
+
+//       // Update datePickerBtnEl with the selected date
+//       let selectedDate;
+//       if (button.classList.contains('date-picker-other-month-date')) {
+//         if (button.innerText < 15) {
+//           selectedDate = subMonths(currentDate, 1);
+//         } else {
+//           selectedDate = addMonths(currentDate, 1);
+//         }
+//       } else {
+//         selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), button.innerText);
+//       }
+//       datePickerBtnEl.innerText = format(selectedDate, dateFormat);
+//     });
+
+//   });
 },{"date-fns":"../../../node_modules/date-fns/esm/index.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -23051,7 +23116,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50457" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50311" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
