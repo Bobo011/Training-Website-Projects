@@ -22989,6 +22989,13 @@ function renderDates() {
     } else {
       button.classList.remove('date-picker-other-month-date');
     }
+
+    // Add logic to handle dates before the start of the month or after the end of the month
+    if (date < firstDayOfMonth || date > lastDayOfMonth) {
+      button.classList.add('date-picker-other-month-date');
+    } else {
+      button.classList.remove('date-picker-other-month-date');
+    }
   });
 }
 renderDates();
@@ -23044,7 +23051,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53872" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50457" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -60,6 +60,13 @@ function renderDates() {
     } else {
       button.classList.remove('date-picker-other-month-date');
     }
+    
+    // Add logic to handle dates before the start of the month or after the end of the month
+    if (date < firstDayOfMonth || date > lastDayOfMonth) {
+      button.classList.add('date-picker-other-month-date');
+    } else {
+      button.classList.remove('date-picker-other-month-date');
+    }
   });
 }
 
