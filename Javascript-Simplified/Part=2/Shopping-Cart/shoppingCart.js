@@ -11,11 +11,12 @@ const cartItemTemplateEl = document.querySelector("#cart-item-template");
 
 const cartItemContainer = document.querySelector("[data-cart-items]");
 
+const cartQuantity = document.querySelector('[data-cart-quantity]')
+
+
 export function setupShoppingCart() {}
 
-//remove items from cart
-//show/hide the cart button when it has no items or when it goes from 0 to 1 item
-//Persist across multiple pages
+
 
 //show/hide the cart when clicked
 cartButton.addEventListener("click", () => {
@@ -23,7 +24,12 @@ cartButton.addEventListener("click", () => {
 });
 
 export function addToCart(id) {
+    let existingItem = shoppingCart.find(entry => entry.id === id)
+    if(existingItem){
+        existingItem.quantity++
+    }else{
   shoppingCart.push({ id: id, quantity: 1 });
+}
   renderCart();
 }
 

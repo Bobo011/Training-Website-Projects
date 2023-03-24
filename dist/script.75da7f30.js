@@ -248,21 +248,25 @@ var shoppingCart = [];
 var IMAGE_URL = "https://dummyimage.com/210x130/";
 var cartItemTemplateEl = document.querySelector("#cart-item-template");
 var cartItemContainer = document.querySelector("[data-cart-items]");
+var cartQuantity = document.querySelector('[data-cart-quantity]');
 function setupShoppingCart() {}
-
-//remove items from cart
-//show/hide the cart button when it has no items or when it goes from 0 to 1 item
-//Persist across multiple pages
 
 //show/hide the cart when clicked
 cartButton.addEventListener("click", function () {
   cartItemsWrapper.classList.toggle("invisible");
 });
 function addToCart(id) {
-  shoppingCart.push({
-    id: id,
-    quantity: 1
+  var existingItem = shoppingCart.find(function (entry) {
+    return entry.id === id;
   });
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    shoppingCart.push({
+      id: id,
+      quantity: 1
+    });
+  }
   renderCart();
 }
 function renderCart() {
