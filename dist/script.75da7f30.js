@@ -249,7 +249,11 @@ var IMAGE_URL = "https://dummyimage.com/210x130/";
 var cartItemTemplateEl = document.querySelector("#cart-item-template");
 var cartItemContainer = document.querySelector("[data-cart-items]");
 var cartQuantity = document.querySelector('[data-cart-quantity]');
-function setupShoppingCart() {}
+var cartTotal = document.querySelector('[data-cart-total]');
+var cart = document.querySelector('[data-cart]');
+function setupShoppingCart() {
+  renderCart();
+}
 
 //show/hide the cart when clicked
 cartButton.addEventListener("click", function () {
@@ -270,6 +274,30 @@ function addToCart(id) {
   renderCart();
 }
 function renderCart() {
+  renderCartItems();
+  if (shoppingCart.length === 0) {
+    hideCart();
+  } else {
+    showCart();
+    renderCartItems();
+  }
+}
+function hideCart() {
+  cart.classList.add('invisible');
+  cartItemsWrapper.classList.add('invisible');
+}
+function showCart() {
+  cart.classList.remove('invisible');
+}
+function renderCartItems() {
+  cartQuantity.innerText = shoppingCart.length;
+  var totalCents = shoppingCart.reduce(function (sum, entry) {
+    var item = _items.default.find(function (i) {
+      return entry.id === i.id;
+    });
+    return sum + item.priceCents * entry.quantity;
+  }, 0);
+  cartTotal.innerText = (0, _formatCurrency.formatCurrency)(totalCents / 100);
   cartItemContainer.innerHTML = "";
   shoppingCart.forEach(function (entry) {
     var item = _items.default.find(function (i) {
