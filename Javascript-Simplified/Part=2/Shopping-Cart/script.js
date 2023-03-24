@@ -1,1 +1,3 @@
-const removeFromCartBtnEl = document.querySelector('[data-remove-from-cart-button ]')
+import { setupStore } from "./store.js";
+
+setupStore()

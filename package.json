@@ -4,8 +4,8 @@
   "description": "Training Websites",
   "main": "index.js",
   "scripts": {
-    "start": "parcel Javascript-Simplified/Part=2/Shopping-Cart/index.html",
-    "build": "parcel build Javascript-Simplified/Part=2/Shopping-Cart/index.html"
+    "start": "parcel Javascript-Simplified/Part=2/Shopping-Cart/index.html Javascript-Simplified/Part=2/Shopping-Cart/store.html Javascript-Simplified/Part=2/Shopping-Cart/team.html",
+    "build": "parcel build Javascript-Simplified/Part=2/Shopping-Cart/index.html Javascript-Simplified/Part=2/Shopping-Cart/store.html Javascript-Simplified/Part=2/Shopping-Cart/team.html"
   },
   "repository": {
     "type": "git",

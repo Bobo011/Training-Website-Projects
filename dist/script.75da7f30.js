@@ -117,9 +117,83 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"script.js":[function(require,module,exports) {
-var removeFromCartBtnEl = document.querySelector('[data-remove-from-cart-button ]');
-},{}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"items.json":[function(require,module,exports) {
+module.exports = [{
+  "id": 1,
+  "name": "Red",
+  "category": "Primary Color",
+  "priceCents": 1600,
+  "imageColor": "F00"
+}, {
+  "id": 2,
+  "name": "Yellow",
+  "category": "Primary Color",
+  "priceCents": 2100,
+  "imageColor": "FF0"
+}, {
+  "id": 3,
+  "name": "Blue",
+  "category": "Primary Color",
+  "priceCents": 1200,
+  "imageColor": "00F"
+}, {
+  "id": 4,
+  "name": "Orange",
+  "category": "Secondary Color",
+  "priceCents": 1800,
+  "imageColor": "F60"
+}, {
+  "id": 5,
+  "name": "Green",
+  "category": "Secondary Color",
+  "priceCents": 1600,
+  "imageColor": "0F0"
+}, {
+  "id": 6,
+  "name": "Purple",
+  "category": "Secondary Color",
+  "priceCents": 2100,
+  "imageColor": "60F"
+}, {
+  "id": 7,
+  "name": "Light Gray",
+  "category": "Grayscale",
+  "priceCents": 1200,
+  "imageColor": "AAA"
+}, {
+  "id": 8,
+  "name": "Dark Gray",
+  "category": "Grayscale",
+  "priceCents": 1600,
+  "imageColor": "333"
+}];
+},{}],"store.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setupStore = setupStore;
+var _items = _interopRequireDefault(require("./items.json"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var storeItemTemplateEl = document.querySelector('#store-item-template');
+var storeItemContainer = document.querySelector('[data-store-container]');
+function setupStore() {
+  _items.default.forEach(renderStoreItem);
+}
+function renderStoreItem(item) {
+  var storeItem = storeItemTemplateEl.content.cloneNode(true);
+  var container = storeItem.querySelector('[data-store-item]');
+  container.dataset.itemId = item.id;
+  var name = storeItem.querySelector('[data-name]');
+  name.innerText = item.name;
+}
+},{"./items.json":"items.json"}],"script.js":[function(require,module,exports) {
+"use strict";
+
+var _store = require("./store.js");
+(0, _store.setupStore)();
+},{"./store.js":"store.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
