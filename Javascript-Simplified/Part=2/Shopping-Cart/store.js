@@ -1,5 +1,6 @@
-import { enUS } from 'date-fns/locale'
+
 import items from './items.json'
+import {formatCurrency} from 'E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js'
 
 const storeItemTemplateEl = document.querySelector('#store-item-template')
 const storeItemContainerEl = document.querySelector('[data-store-container]')
@@ -26,8 +27,8 @@ const image  = storeItem.querySelector('[data-image]')
 image.src = `${IMAGE_URL}/${item.imageColor}/${item.imageColor}`
 
 const price  = storeItem.querySelector('[data-price]')
-const formatter = new Intl.NumberFormat(enUS,{style: 'currency', currency:'USD'})
-price.innerText = formatter.format(item.priceCents / 100) 
+
+price.innerText = formatCurrency(item.priceCents / 100) 
 
 
 
