@@ -217,6 +217,20 @@ module.exports = [{
   "priceCents": 1600,
   "imageColor": "333"
 }];
+},{}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatCurrency = formatCurrency;
+var formatter = new Intl.NumberFormat(undefined, {
+  style: 'currency',
+  currency: 'USD'
+});
+function formatCurrency(amount) {
+  return formatter.format(amount);
+}
 },{}],"shoppingCart.js":[function(require,module,exports) {
 "use strict";
 
@@ -226,12 +240,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.addToCart = addToCart;
 exports.setupShoppingCart = setupShoppingCart;
 var _items = _interopRequireDefault(require("E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json"));
+var _formatCurrency = require("../../../util-scripts/formatCurrency");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var cartButton = document.querySelector('[data-cart-button]');
-var cartItemsWrapper = document.querySelector('[data-cart-items-wrapper]');
+var cartButton = document.querySelector("[data-cart-button]");
+var cartItemsWrapper = document.querySelector("[data-cart-items-wrapper]");
 var shoppingCart = [];
-var IMAGE_URL = 'https://dummyimage.com/210x130/';
-var cartItemTemplateEl = document.querySelector('#cart-item-template');
+var IMAGE_URL = "https://dummyimage.com/210x130/";
+var cartItemTemplateEl = document.querySelector("#cart-item-template");
+var cartItemContainer = document.querySelector("[data-cart-items]");
 function setupShoppingCart() {}
 
 //remove items from cart
@@ -239,8 +255,8 @@ function setupShoppingCart() {}
 //Persist across multiple pages
 
 //show/hide the cart when clicked
-cartButton.addEventListener('click', function () {
-  cartItemsWrapper.classList.toggle('invisible');
+cartButton.addEventListener("click", function () {
+  cartItemsWrapper.classList.toggle("invisible");
 });
 function addToCart(id) {
   shoppingCart.push({
@@ -250,20 +266,25 @@ function addToCart(id) {
   renderCart();
 }
 function renderCart() {
+  cartItemContainer.innerHTML = "";
   shoppingCart.forEach(function (entry) {
-    var items = items.find(function (i) {
+    var item = _items.default.find(function (i) {
       return entry.id === i.id;
     });
     var cartItem = cartItemTemplateEl.content.cloneNode(true);
-    var container = cartItem.querySelector('[data-item]');
+    var container = cartItem.querySelector("[data-item]");
     container.dataset.itemId = item.id;
-    var name = cartItem.querySelector('[data-name]');
+    var name = cartItem.querySelector("[data-name]");
     name.innerText = item.name;
-    var image = cartItem.querySelector('[data-image]');
+    var image = cartItem.querySelector("[data-image]");
     image.src = "".concat(IMAGE_URL, "/").concat(item.imageColor, "/").concat(item.imageColor);
-    var price = cartItem.querySelector('[data-price]');
-    price.innerText = formatCurrency(item.priceCents / 100);
-    cartItemContainerEl.appendChild(cartItem);
+    if (entry.quantity > 1) {
+      var quantity = cartItem.querySelector("[data-quantity]");
+      quantity.innerText = "x".concat(entry.quantity);
+    }
+    var price = cartItem.querySelector("[data-price]");
+    price.innerText = (0, _formatCurrency.formatCurrency)(item.priceCents * entry.quantity / 100);
+    cartItemContainer.appendChild(cartItem);
   });
 }
 
@@ -271,7 +292,7 @@ function renderCart() {
 //handle click event for adding
 //handle multiple of the same items in the cart
 //calculate accurate total
-},{"E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json":"items.json"}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
+},{"E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json":"items.json","../../../util-scripts/formatCurrency":"../../../util-scripts/formatCurrency.js"}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -303,7 +324,7 @@ function setupStore() {
   document.addEventListener('click', function (e) {
     if (e.target.matches('[data-add-to-cart-button]')) {
       var id = e.target.closest('[data-store-item]').dataset.itemId;
-      (0, _shoppingCart.addToCart)(id);
+      (0, _shoppingCart.addToCart)(parseInt(id));
     }
   });
   _items.default.forEach(renderStoreItem);
