@@ -167,6 +167,56 @@ module.exports = [{
   "priceCents": 1600,
   "imageColor": "333"
 }];
+},{}],"items.json":[function(require,module,exports) {
+module.exports = [{
+  "id": 1,
+  "name": "Red",
+  "category": "Primary Color",
+  "priceCents": 1600,
+  "imageColor": "F00"
+}, {
+  "id": 2,
+  "name": "Yellow",
+  "category": "Primary Color",
+  "priceCents": 2100,
+  "imageColor": "FF0"
+}, {
+  "id": 3,
+  "name": "Blue",
+  "category": "Primary Color",
+  "priceCents": 1200,
+  "imageColor": "00F"
+}, {
+  "id": 4,
+  "name": "Orange",
+  "category": "Secondary Color",
+  "priceCents": 1800,
+  "imageColor": "F60"
+}, {
+  "id": 5,
+  "name": "Green",
+  "category": "Secondary Color",
+  "priceCents": 1600,
+  "imageColor": "0F0"
+}, {
+  "id": 6,
+  "name": "Purple",
+  "category": "Secondary Color",
+  "priceCents": 2100,
+  "imageColor": "60F"
+}, {
+  "id": 7,
+  "name": "Light Gray",
+  "category": "Grayscale",
+  "priceCents": 1200,
+  "imageColor": "AAA"
+}, {
+  "id": 8,
+  "name": "Dark Gray",
+  "category": "Grayscale",
+  "priceCents": 1600,
+  "imageColor": "333"
+}];
 },{}],"shoppingCart.js":[function(require,module,exports) {
 "use strict";
 
@@ -175,9 +225,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.addToCart = addToCart;
 exports.setupShoppingCart = setupShoppingCart;
+var _items = _interopRequireDefault(require("E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var cartButton = document.querySelector('[data-cart-button]');
 var cartItemsWrapper = document.querySelector('[data-cart-items-wrapper]');
 var shoppingCart = [];
+var IMAGE_URL = 'https://dummyimage.com/210x130/';
+var cartItemTemplateEl = document.querySelector('#cart-item-template');
 function setupShoppingCart() {}
 
 //remove items from cart
@@ -195,13 +249,29 @@ function addToCart(id) {
   });
   renderCart();
 }
-function renderCart() {}
+function renderCart() {
+  shoppingCart.forEach(function (entry) {
+    var items = items.find(function (i) {
+      return entry.id === i.id;
+    });
+    var cartItem = cartItemTemplateEl.content.cloneNode(true);
+    var container = cartItem.querySelector('[data-item]');
+    container.dataset.itemId = item.id;
+    var name = cartItem.querySelector('[data-name]');
+    name.innerText = item.name;
+    var image = cartItem.querySelector('[data-image]');
+    image.src = "".concat(IMAGE_URL, "/").concat(item.imageColor, "/").concat(item.imageColor);
+    var price = cartItem.querySelector('[data-price]');
+    price.innerText = formatCurrency(item.priceCents / 100);
+    cartItemContainerEl.appendChild(cartItem);
+  });
+}
 
 //add items to cart
 //handle click event for adding
 //handle multiple of the same items in the cart
 //calculate accurate total
-},{}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
+},{"E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json":"items.json"}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

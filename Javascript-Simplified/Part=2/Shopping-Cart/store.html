@@ -88,19 +88,19 @@
   </template>
 
   <template id="cart-id-template">
-    <div class="mb-6">
+    <div data-item class="mb-6">
       <div class="block relative h-24 rounded overflow-hidden">
-        <img alt="ecommerce" class="object-cover object-center w-full h-full block rounded" src="https://dummyimage.com/210x130/F00/F00">
+        <img data-image alt="ecommerce" class="object-cover object-center w-full h-full block rounded" src="">
         <button data-remove-from-cart-button class="absolute top-0 right-0 bg-black rounded-tr text-white w-6 h-6 text-lg flex justify-center items-center">&times;</button>
       </div>
       <div class="mt-2 flex justify-between">
         <div class="flex items-center title-font">
-          <h2 class="text-gray-900 text-lg font-medium">
-            Red
+          <h2 data-name class="text-gray-900 text-lg font-medium">
+           
           </h2>
-          <span class="text-gray-600 text-sm font-bold ml-1">x2</span>
+          <span data-quantity class="text-gray-600 text-sm font-bold ml-1"></span>
         </div>
-        <div>$32.00</div>
+        <div data-price></div>
       </div>
     </div>
   </template>
