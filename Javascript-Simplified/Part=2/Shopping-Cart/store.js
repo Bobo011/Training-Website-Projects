@@ -1,5 +1,6 @@
 
 import items from './items.json'
+import { addToCart } from './shoppingCart.js'
 import {formatCurrency} from 'E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js'
 
 const storeItemTemplateEl = document.querySelector('#store-item-template')
@@ -9,6 +10,13 @@ const IMAGE_URL = 'https://dummyimage.com/420x260'
 
 
 export function setupStore(){
+document.addEventListener('click',(e)=>{
+if(e.target.matches('[data-add-to-cart-button]')){
+    const id = e.target.closest('[data-store-item]').dataset.itemId
+    addToCart(id)
+}
+})
+
     items.forEach(renderStoreItem)
 }
 

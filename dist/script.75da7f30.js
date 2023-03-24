@@ -167,6 +167,40 @@ module.exports = [{
   "priceCents": 1600,
   "imageColor": "333"
 }];
+},{}],"shoppingCart.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addToCart = addToCart;
+exports.setupShoppingCart = setupShoppingCart;
+var cartButton = document.querySelector('[data-cart-button]');
+var cartItemsWrapper = document.querySelector('[data-cart-items-wrapper]');
+var shoppingCart = [];
+function setupShoppingCart() {}
+
+//remove items from cart
+//show/hide the cart button when it has no items or when it goes from 0 to 1 item
+//Persist across multiple pages
+
+//show/hide the cart when clicked
+cartButton.addEventListener('click', function () {
+  cartItemsWrapper.classList.toggle('invisible');
+});
+function addToCart(id) {
+  shoppingCart.push({
+    id: id,
+    quantity: 1
+  });
+  renderCart();
+}
+function renderCart() {}
+
+//add items to cart
+//handle click event for adding
+//handle multiple of the same items in the cart
+//calculate accurate total
 },{}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
 "use strict";
 
@@ -189,12 +223,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setupStore = setupStore;
 var _items = _interopRequireDefault(require("./items.json"));
+var _shoppingCart = require("./shoppingCart.js");
 var _formatCurrency = require("E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var storeItemTemplateEl = document.querySelector('#store-item-template');
 var storeItemContainerEl = document.querySelector('[data-store-container]');
 var IMAGE_URL = 'https://dummyimage.com/420x260';
 function setupStore() {
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('[data-add-to-cart-button]')) {
+      var id = e.target.closest('[data-store-item]').dataset.itemId;
+      (0, _shoppingCart.addToCart)(id);
+    }
+  });
   _items.default.forEach(renderStoreItem);
 }
 function renderStoreItem(item) {
@@ -211,12 +252,14 @@ function renderStoreItem(item) {
   price.innerText = (0, _formatCurrency.formatCurrency)(item.priceCents / 100);
   storeItemContainerEl.appendChild(storeItem);
 }
-},{"./items.json":"items.json","E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js":"../../../util-scripts/formatCurrency.js"}],"script.js":[function(require,module,exports) {
+},{"./items.json":"items.json","./shoppingCart.js":"shoppingCart.js","E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js":"../../../util-scripts/formatCurrency.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 var _store = require("./store.js");
+var _shoppingCart = require("./shoppingCart.js");
 (0, _store.setupStore)();
-},{"./store.js":"store.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _shoppingCart.setupShoppingCart)();
+},{"./store.js":"store.js","./shoppingCart.js":"shoppingCart.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
