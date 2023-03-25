@@ -399,9 +399,10 @@ var _formatCurrency = require("E:/HTML Web pages/Training Website Projects/util-
 var _addGlobalEventListener = _interopRequireDefault(require("E:/HTML Web pages/Training Website Projects/util-scripts/addGlobalEventListener.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var storeItemTemplateEl = document.querySelector('#store-item-template');
-var storeItemContainerEl = document.querySelector('[data-store-container]');
+var storeItemContainer = document.querySelector('[data-store-container]');
 var IMAGE_URL = 'https://dummyimage.com/420x260';
 function setupStore() {
+  if (storeItemContainer == null) return;
   (0, _addGlobalEventListener.default)('click', "[data-add-to-cart-button]", function (e) {
     var id = e.target.closest('[data-store-item]').dataset.itemId;
     (0, _shoppingCart.addToCart)(parseInt(id));
@@ -420,7 +421,7 @@ function renderStoreItem(item) {
   image.src = "".concat(IMAGE_URL, "/").concat(item.imageColor, "/").concat(item.imageColor);
   var price = storeItem.querySelector('[data-price]');
   price.innerText = (0, _formatCurrency.formatCurrency)(item.priceCents / 100);
-  storeItemContainerEl.appendChild(storeItem);
+  storeItemContainer.appendChild(storeItem);
 }
 },{"./items.json":"items.json","./shoppingCart.js":"shoppingCart.js","E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js":"../../../util-scripts/formatCurrency.js","E:/HTML Web pages/Training Website Projects/util-scripts/addGlobalEventListener.js":"../../../util-scripts/addGlobalEventListener.js"}],"script.js":[function(require,module,exports) {
 "use strict";

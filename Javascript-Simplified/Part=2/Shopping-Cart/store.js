@@ -5,12 +5,14 @@ import {formatCurrency} from 'E:/HTML Web pages/Training Website Projects/util-s
 import addGlobalEventListener from 'E:/HTML Web pages/Training Website Projects/util-scripts/addGlobalEventListener.js'
 
 const storeItemTemplateEl = document.querySelector('#store-item-template')
-const storeItemContainerEl = document.querySelector('[data-store-container]')
+const storeItemContainer = document.querySelector('[data-store-container]')
 
 const IMAGE_URL = 'https://dummyimage.com/420x260'
 
 
 export function setupStore(){
+    if(storeItemContainer == null)return
+
     addGlobalEventListener('click',"[data-add-to-cart-button]",(e)=>{
         const id = e.target.closest('[data-store-item]').dataset.itemId
         addToCart(parseInt(id))
@@ -40,5 +42,5 @@ price.innerText = formatCurrency(item.priceCents / 100)
 
 
 
-storeItemContainerEl.appendChild(storeItem)
+storeItemContainer.appendChild(storeItem)
 }
