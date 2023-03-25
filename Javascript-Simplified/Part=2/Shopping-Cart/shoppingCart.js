@@ -1,5 +1,6 @@
 import items from "E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json";
 import { formatCurrency } from "../../../util-scripts/formatCurrency";
+import addGlobalEventListener from "../../../util-scripts/addGlobalEventListener";
 
 const cartButton = document.querySelector("[data-cart-button]");
 
@@ -19,6 +20,12 @@ const cart = document.querySelector('[data-cart]')
 
 
 export function setupShoppingCart() {
+addGlobalEventListener('click', '[data-remove-from-cart-button]',(e)=>{
+    const id = parseInt(e.target.closest('[data-item]').dataset.itemId)
+    removeFromCart(id)
+    
+})
+
     renderCart()
 }
 
@@ -105,7 +112,4 @@ function renderCartItems() {
     })
 }
 
-//add items to cart
-//handle click event for adding
-//handle multiple of the same items in the cart
-//calculate accurate total
+

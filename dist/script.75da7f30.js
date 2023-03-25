@@ -231,6 +231,20 @@ var formatter = new Intl.NumberFormat(undefined, {
 function formatCurrency(amount) {
   return formatter.format(amount);
 }
+},{}],"../../../util-scripts/addGlobalEventListener.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = addGlobalEventListener;
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, function (e) {
+    if (e.target.matches(selector)) {
+      callback(e);
+    }
+  });
+}
 },{}],"shoppingCart.js":[function(require,module,exports) {
 "use strict";
 
@@ -241,6 +255,7 @@ exports.addToCart = addToCart;
 exports.setupShoppingCart = setupShoppingCart;
 var _items = _interopRequireDefault(require("E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json"));
 var _formatCurrency = require("../../../util-scripts/formatCurrency");
+var _addGlobalEventListener = _interopRequireDefault(require("../../../util-scripts/addGlobalEventListener"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var cartButton = document.querySelector("[data-cart-button]");
 var cartItemsWrapper = document.querySelector("[data-cart-items-wrapper]");
@@ -252,6 +267,10 @@ var cartQuantity = document.querySelector('[data-cart-quantity]');
 var cartTotal = document.querySelector('[data-cart-total]');
 var cart = document.querySelector('[data-cart]');
 function setupShoppingCart() {
+  (0, _addGlobalEventListener.default)('click', '[data-remove-from-cart-button]', function (e) {
+    var id = parseInt(e.target.closest('[data-item]').dataset.itemId);
+    removeFromCart(id);
+  });
   renderCart();
 }
 
@@ -329,12 +348,7 @@ function renderCartItems() {
     cartItemContainer.appendChild(cartItem);
   });
 }
-
-//add items to cart
-//handle click event for adding
-//handle multiple of the same items in the cart
-//calculate accurate total
-},{"E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json":"items.json","../../../util-scripts/formatCurrency":"../../../util-scripts/formatCurrency.js"}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
+},{"E:/HTML Web pages/Training Website Projects/Javascript-Simplified/Part=2/Shopping-Cart/items.json":"items.json","../../../util-scripts/formatCurrency":"../../../util-scripts/formatCurrency.js","../../../util-scripts/addGlobalEventListener":"../../../util-scripts/addGlobalEventListener.js"}],"../../../util-scripts/formatCurrency.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -348,6 +362,20 @@ var formatter = new Intl.NumberFormat(undefined, {
 function formatCurrency(amount) {
   return formatter.format(amount);
 }
+},{}],"../../../util-scripts/addGlobalEventListener.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = addGlobalEventListener;
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, function (e) {
+    if (e.target.matches(selector)) {
+      callback(e);
+    }
+  });
+}
 },{}],"store.js":[function(require,module,exports) {
 "use strict";
 
@@ -358,16 +386,15 @@ exports.setupStore = setupStore;
 var _items = _interopRequireDefault(require("./items.json"));
 var _shoppingCart = require("./shoppingCart.js");
 var _formatCurrency = require("E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js");
+var _addGlobalEventListener = _interopRequireDefault(require("E:/HTML Web pages/Training Website Projects/util-scripts/addGlobalEventListener.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var storeItemTemplateEl = document.querySelector('#store-item-template');
 var storeItemContainerEl = document.querySelector('[data-store-container]');
 var IMAGE_URL = 'https://dummyimage.com/420x260';
 function setupStore() {
-  document.addEventListener('click', function (e) {
-    if (e.target.matches('[data-add-to-cart-button]')) {
-      var id = e.target.closest('[data-store-item]').dataset.itemId;
-      (0, _shoppingCart.addToCart)(parseInt(id));
-    }
+  (0, _addGlobalEventListener.default)('click', "[data-add-to-cart-button]", function (e) {
+    var id = e.target.closest('[data-store-item]').dataset.itemId;
+    (0, _shoppingCart.addToCart)(parseInt(id));
   });
   _items.default.forEach(renderStoreItem);
 }
@@ -385,7 +412,7 @@ function renderStoreItem(item) {
   price.innerText = (0, _formatCurrency.formatCurrency)(item.priceCents / 100);
   storeItemContainerEl.appendChild(storeItem);
 }
-},{"./items.json":"items.json","./shoppingCart.js":"shoppingCart.js","E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js":"../../../util-scripts/formatCurrency.js"}],"script.js":[function(require,module,exports) {
+},{"./items.json":"items.json","./shoppingCart.js":"shoppingCart.js","E:/HTML Web pages/Training Website Projects/util-scripts/formatCurrency.js":"../../../util-scripts/formatCurrency.js","E:/HTML Web pages/Training Website Projects/util-scripts/addGlobalEventListener.js":"../../../util-scripts/addGlobalEventListener.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 var _store = require("./store.js");
