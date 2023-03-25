@@ -266,18 +266,26 @@ var cartItemContainer = document.querySelector("[data-cart-items]");
 var cartQuantity = document.querySelector('[data-cart-quantity]');
 var cartTotal = document.querySelector('[data-cart-total]');
 var cart = document.querySelector('[data-cart]');
+var SESSION_STORAGE_KEY = 'SHOPPING_CART-cart';
 function setupShoppingCart() {
   (0, _addGlobalEventListener.default)('click', '[data-remove-from-cart-button]', function (e) {
     var id = parseInt(e.target.closest('[data-item]').dataset.itemId);
     removeFromCart(id);
   });
+  shoppingCart = loadCart();
   renderCart();
+  //show/hide the cart when clicked
+  cartButton.addEventListener("click", function () {
+    cartItemsWrapper.classList.toggle("invisible");
+  });
 }
-
-//show/hide the cart when clicked
-cartButton.addEventListener("click", function () {
-  cartItemsWrapper.classList.toggle("invisible");
-});
+function saveCart() {
+  sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(shoppingCart));
+}
+function loadCart() {
+  var cart = sessionStorage.getItem(SESSION_STORAGE_KEY);
+  return JSON.parse(cart) || [];
+}
 function addToCart(id) {
   var existingItem = shoppingCart.find(function (entry) {
     return entry.id === id;
@@ -291,6 +299,7 @@ function addToCart(id) {
     });
   }
   renderCart();
+  saveCart();
 }
 function removeFromCart(id) {
   var existingItem = shoppingCart.find(function (entry) {
@@ -301,6 +310,7 @@ function removeFromCart(id) {
     return entry.id !== id;
   });
   renderCart();
+  saveCart();
 }
 function renderCart() {
   renderCartItems();
@@ -444,7 +454,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50146" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51449" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
