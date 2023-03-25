@@ -278,9 +278,10 @@ function removeFromCart(id) {
     return entry.id === id;
   });
   if (existingItem == null) return;
-  shoppingCart.filter(function (entry) {
-    return entry.id === i;
+  shoppingCart = shoppingCart.filter(function (entry) {
+    return entry.id !== id;
   });
+  renderCart();
 }
 function renderCart() {
   renderCartItems();

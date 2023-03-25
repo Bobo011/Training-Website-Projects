@@ -43,7 +43,8 @@ function removeFromCart(id){
     let existingItem = shoppingCart.find(entry => entry.id === id)
 
     if(existingItem ==null)return
-    shoppingCart.filter(entry =>entry.id === i)
+    shoppingCart = shoppingCart.filter(entry =>entry.id !== id)
+    renderCart()
 }
 
 
