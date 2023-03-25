@@ -273,6 +273,15 @@ function addToCart(id) {
   }
   renderCart();
 }
+function removeFromCart(id) {
+  var existingItem = shoppingCart.find(function (entry) {
+    return entry.id === id;
+  });
+  if (existingItem == null) return;
+  shoppingCart.filter(function (entry) {
+    return entry.id === i;
+  });
+}
 function renderCart() {
   renderCartItems();
   if (shoppingCart.length === 0) {
@@ -407,7 +416,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65328" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50146" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

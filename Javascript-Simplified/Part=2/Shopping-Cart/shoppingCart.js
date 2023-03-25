@@ -39,6 +39,14 @@ export function addToCart(id) {
 renderCart();
 }
 
+function removeFromCart(id){
+    let existingItem = shoppingCart.find(entry => entry.id === id)
+
+    if(existingItem ==null)return
+    shoppingCart.filter(entry =>entry.id === i)
+}
+
+
 function renderCart(){
     renderCartItems()
     if(shoppingCart.length === 0){
