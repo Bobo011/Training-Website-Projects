@@ -1,7 +1,6 @@
 //JAVASCRIPT CODE
-//1)A tooltip must appear when mouse hovers over a text tag with the class of 'help-text'
-//2)The tooltip text must have the css class of 
-//selected the tooltip and it's text elements
+//1)The tooltip must appear in relation to the container's position
+
 const tooltipEl = document.querySelector('.help-text')
 const tooltipText = tooltipEl.getAttribute('data-tooltip');
 //Tooltip Appears when mouseover it
@@ -13,12 +12,39 @@ tooltipEl.addEventListener('mouseover', () => {
   tooltip.textContent = tooltipText;
   tooltipContainer.appendChild(tooltip);
   document.body.appendChild(tooltipContainer);
+
+  const containerRect = tooltipEl.getBoundingClientRect();
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const offset = 10;
+
+  // Calculate the top and left position of the tooltip
+  let tooltipTop = containerRect.top - tooltipRect.height - offset;
+  let tooltipLeft = containerRect.left + containerRect.width / 2 - tooltipRect.width / 2;
+
+  // Adjust the position of the tooltip if it would go off the screen
+  if (tooltipLeft < 0) {
+    tooltipLeft = 0;
+  } else if (tooltipLeft + tooltipRect.width > window.innerWidth) {
+    tooltipLeft = window.innerWidth - tooltipRect.width;
+  }
+  if (tooltipTop < 0) {
+    tooltipTop = containerRect.bottom + offset;
+  }
+
+  // Set the position of the tooltip
+  tooltip.style.top = tooltipTop + 'px';
+  tooltip.style.left = tooltipLeft + 'px';
 });
+
 //Tooltip Disappears when mouseout it
 tooltipEl.addEventListener('mouseout', () => {
   const tooltipContainer = document.querySelector('.tooltip-container');
   document.body.removeChild(tooltipContainer);
 });
+
+
+
+
 
 
 
