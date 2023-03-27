@@ -31,6 +31,13 @@ tooltipEl.addEventListener('mouseover', () => {
     tooltipTop = containerRect.bottom + offset;
   }
 
+  // Adjust the position of the tooltip based on the container's position
+  if (containerRect.left > window.innerWidth / 2) {
+    tooltipLeft -= containerRect.width / 2 + tooltipRect.width / 2 + offset;
+  } else {
+    tooltipLeft += containerRect.width / 2 + tooltipRect.width / 2 + offset;
+  }
+
   // Set the position of the tooltip
   tooltip.style.top = tooltipTop + 'px';
   tooltip.style.left = tooltipLeft + 'px';
