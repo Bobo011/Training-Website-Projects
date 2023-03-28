@@ -4,8 +4,8 @@
   "description": "Training Websites",
   "main": "index.js",
   "scripts": {
-    "start": "parcel /Javascript-Simplified/Part=2/ToolTip/index.html",
-    "build": "parcel build  /Javascript-Simplified/Part=2/ToolTip/index.html"
+    "start": "parcel Javascript-Simplified/Part=2/ToolTip/index.html",
+    "build": "parcel build Javascript-Simplified/Part=2/ToolTip/index.html"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,8 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "bundler": "^0.8.0",
+    "parcel": "^2.8.3",
     "parcel-bundler": "^1.8.1"
   }
 }

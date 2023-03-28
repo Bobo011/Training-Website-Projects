@@ -1,4 +1,8 @@
 //JAVASCRIPT CODE
+import showTooltip from "./tooltip.js";
+
+showTooltip()
+
 
 
 
