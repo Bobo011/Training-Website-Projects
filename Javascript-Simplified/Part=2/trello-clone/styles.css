@@ -70,7 +70,7 @@ body {
   user-select: none;
 }
 
-.hide {
+[data-draggable].hide {
   display: none !important;
 }
 
