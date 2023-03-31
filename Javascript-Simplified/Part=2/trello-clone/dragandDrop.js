@@ -39,7 +39,10 @@ return offset
 function setupDragEvents(selectedItem,itemClone,ghost,offset){
       //MOUSE MOVE
       const mouseMoveFunction = (e) => {
+        const dropZone =getDropZone(e.target)
         positionClone(itemClone, e, offset)
+        if(dropZone == null) return
+        dropZone.append(ghost)
       };
       document.addEventListener("mousemove", mouseMoveFunction);
       //MOUSE UP
@@ -66,3 +69,10 @@ function stopDrag(selectedItem,itemClone,ghost){
 }
 
 
+function getDropZone(element){
+if(element.matches('[data-drop-zone]')){
+  return element
+}else {
+  return element.closest('[data-drop-zone]')
+}
+}
