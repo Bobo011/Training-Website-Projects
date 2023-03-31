@@ -1,13 +1,15 @@
+//JAVASCRIPT CODE
+
 import addGlobalEventListener from "../../../util-scripts/addGlobalEventListener.js";
 
-export default function setup() {
+export default function setup(onDragComplete) {
     
   addGlobalEventListener("mousedown", "[data-draggable]", (e) => {
     const selectedItem = e.target
     const itemClone = selectedItem.cloneNode(true)
     const ghost = selectedItem.cloneNode()
     const offset = setupDragItems(selectedItem,itemClone,ghost, e)
-    setupDragEvents(selectedItem,itemClone,ghost,offset)
+    setupDragEvents(selectedItem,itemClone,ghost,offset,onDragComplete)
     
   });
   
@@ -36,7 +38,7 @@ return offset
 }
 
 
-function setupDragEvents(selectedItem,itemClone,ghost,offset){
+function setupDragEvents(selectedItem,itemClone,ghost,offset,onDragComplete){
       //MOUSE MOVE
       const mouseMoveFunction = (e) => {
         const dropZone =getDropZone(e.target)
@@ -47,7 +49,7 @@ function setupDragEvents(selectedItem,itemClone,ghost,offset){
           return e.clientY < rect.top + rect.height / 2
         })
         if(closestChild != null){
-dropZone.insertBefore(ghost,closestChild)
+          dropZone.insertBefore(ghost,closestChild)
         }else{
           dropZone.append(ghost)
         }
@@ -58,7 +60,19 @@ dropZone.insertBefore(ghost,closestChild)
       document.addEventListener(
         "mouseup",
         () => {
-          document.removeEventListener("mousemove", mouseMoveFunction);
+          document.removeEventListener
+          ("mousemove", mouseMoveFunction);
+          const dropZone = getDropZone(ghost)
+          if (dropZone){
+            dropZone.insertBefore(selectedItem,ghost)
+            onDragComplete({
+              startZone:getDropZone(selectedItem),
+              endZone:dropZone,
+              dragElement:selectedItem,
+              index:Array.from(dropZone.children).indexOf(ghost) 
+            })
+            
+          }
           stopDrag(selectedItem,itemClone,ghost)
         },
         { once: true }
@@ -85,3 +99,5 @@ if(element.matches('[data-drop-zone]')){
   return element.closest('[data-drop-zone]')
 }
 }
+
+//END OF CODE
