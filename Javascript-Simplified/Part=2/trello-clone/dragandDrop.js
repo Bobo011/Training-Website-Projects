@@ -42,7 +42,16 @@ function setupDragEvents(selectedItem,itemClone,ghost,offset){
         const dropZone =getDropZone(e.target)
         positionClone(itemClone, e, offset)
         if(dropZone == null) return
-        dropZone.append(ghost)
+        const closestChild = Array.from(dropZone.children).find(child =>{
+          const rect =child.getBoundingClientRect()
+          return e.clientY < rect.top + rect.height / 2
+        })
+        if(closestChild != null){
+dropZone.insertBefore(ghost,closestChild)
+        }else{
+          dropZone.append(ghost)
+        }
+       
       };
       document.addEventListener("mousemove", mouseMoveFunction);
       //MOUSE UP
