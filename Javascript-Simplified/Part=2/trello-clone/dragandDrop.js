@@ -41,21 +41,12 @@ function setupDragEvents(
   offset,
   onDragComplete
 ) {
-  let isOverlapping = false;
-  
   const mouseMoveFunction = e => {
     const dropZone = getDropZone(e.target)
     positionClone(itemClone, e, offset)
     if (dropZone == null) return
     const closestChild = Array.from(dropZone.children).find(child => {
       const rect = child.getBoundingClientRect()
-      if (!isOverlapping && e.clientY >= rect.top && e.clientY <= rect.bottom) {
-        child.style.marginTop = `${ghost.offsetHeight}px`;
-        isOverlapping = true;
-      } else if (isOverlapping && (e.clientY < rect.top || e.clientY > rect.bottom)) {
-        child.style.marginTop = '';
-        isOverlapping = false;
-      }
       return e.clientY < rect.top + rect.height / 2
     })
     if (closestChild != null) {
@@ -86,7 +77,6 @@ function setupDragEvents(
     { once: true }
   )
 }
-
 
 function positionClone(itemClone, mousePosition, offset) {
   itemClone.style.top = `${mousePosition.clientY - offset.y}px`
