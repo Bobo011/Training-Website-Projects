@@ -4,8 +4,7 @@
   "description": "Training Websites",
   "main": "index.js",
   "scripts": {
-    "start": "parcel Javascript-Simplified/Part=2/trello-clone/index.html",
-    "build": "parcel build Javascript-Simplified/Part=2/trello-clone/index.html"
+   
   },
   "repository": {
     "type": "git",
