@@ -8,15 +8,23 @@ const notCompletedBtn = document.querySelector('.filter-btn.not-completed')
 const completedBtn = document.querySelector('.filter-btn.completed')
 //the class Active highlights any button
 addGlobalEventListener('click','.filter-btn.all',e=>{
-  console.log('clicked');
+  activate(allBtn)
 })
 addGlobalEventListener('click','.filter-btn.not-completed',e=>{
-  console.log('clicked');
+ activate(notCompletedBtn)
 })
 addGlobalEventListener('click','.filter-btn.completed',e=>{
-  console.log('clicked');
+ activate(completedBtn)
 })
 
+function activate(element){
+  allBtn.classList.remove('active')
+  notCompletedBtn.classList.remove('active')
+  completedBtn.classList.remove('active')
+
+  element.classList.add('active')
+
+}
 
 
 
