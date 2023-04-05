@@ -109,4 +109,11 @@ li .todo-text {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+.separate{
+    
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
 /* END OF CODE */

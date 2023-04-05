@@ -11,6 +11,7 @@ const input = document.querySelector('#todo-input')
 let inputData = input.value
 //Create a new list Item with a button
 const newListItem = document.createElement('li')
+const separator = document.createElement('div')
 const completeNewListBtn = document.createElement('button');
 const deleteNewListBtn = document.createElement('button');
 
@@ -21,10 +22,14 @@ deleteNewListBtn.classList.add('delete-btn')
 deleteNewListBtn.innerText = 'Delete';
 completeNewListBtn.classList.add('complete-btn')
 completeNewListBtn.innerText = 'Completed'
+separator.classList.add('separate')
 
+//Separates the the inputData and the buttons 
+newListItem.appendChild(separator);
 //Appends the delete and complete button
 newListItem.appendChild(completeNewListBtn);
 newListItem.appendChild(deleteNewListBtn);
+
 
 //Appends the list Item
 toDoList.appendChild(newListItem);
