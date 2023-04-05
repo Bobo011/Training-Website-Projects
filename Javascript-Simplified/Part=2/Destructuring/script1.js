@@ -11,14 +11,21 @@ const input = document.querySelector('#todo-input')
 let inputData = input.value
 //Create a new list Item with a button
 const newListItem = document.createElement('li')
+const completeNewListBtn = document.createElement('button');
 const deleteNewListBtn = document.createElement('button');
 
-newListItem.innerText = inputData
-deleteNewListBtn.classList.add('delete-btn',)
-deleteNewListBtn.innerText = 'Delete';
 
-//Appends the delete button
+newListItem.innerText = inputData
+//decorate the Complete and Delete buttons
+deleteNewListBtn.classList.add('delete-btn')
+deleteNewListBtn.innerText = 'Delete';
+completeNewListBtn.classList.add('complete-btn')
+completeNewListBtn.innerText = 'Completed'
+
+//Appends the delete and complete button
+newListItem.appendChild(completeNewListBtn);
 newListItem.appendChild(deleteNewListBtn);
+
 //Appends the list Item
 toDoList.appendChild(newListItem);
 //Deletes the list item
@@ -62,6 +69,10 @@ function initializeFilterButtons() {
 
 
 initializeFilterButtons();
+
+//When i create a list item it should only appear on All or Not Completed unless i mark it as complete
+//Add a button to the new list item that makes the background green
+//when the button is pressed the new list item will go to the completed and All pile and disappear from the not completed
 
 
 // END OF CODE

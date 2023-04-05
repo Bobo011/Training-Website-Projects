@@ -75,7 +75,7 @@ ul {
 li {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 10px;
     background-color: #f1f1f1;
     border-radius: 3px;
@@ -93,6 +93,16 @@ li .todo-text {
 
 .delete-btn{
     background-color: #dc3545;
+    color: #fff;
+    margin-left: 6px;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.complete-btn{
+    background-color: #2bda46;
     color: #fff;
     border: none;
     border-radius: 3px;
