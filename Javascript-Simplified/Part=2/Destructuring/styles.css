@@ -91,7 +91,7 @@ li .todo-text {
     margin-right: 10px;
 }
 
-li button .delete-btn{
+.delete-btn{
     background-color: #dc3545;
     color: #fff;
     border: none;

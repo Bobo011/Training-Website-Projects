@@ -11,13 +11,15 @@ const input = document.querySelector('#todo-input')
 let inputData = input.value
 //Create a new list Item with a button
 const newListItem = document.createElement('li')
-const newListBtn = document.createElement('button');
+const deleteNewListBtn = document.createElement('button');
 
 newListItem.innerText = inputData
-newListBtn.classList.add('delete-btn',)
-newListBtn.innerText = 'Delete';
+deleteNewListBtn.classList.add('delete-btn',)
+deleteNewListBtn.innerText = 'Delete';
+
 //Appends the delete button
-newListItem.appendChild(newListBtn);
+newListItem.appendChild(deleteNewListBtn);
+//Appends the list Item
 toDoList.appendChild(newListItem);
 //Deletes the list item
 addGlobalEventListener('click', '.delete-btn', (e) => {
