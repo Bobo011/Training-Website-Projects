@@ -1,3 +1,4 @@
+/* CSS CODE */
 body {
     margin: 0;
     padding: 0;
@@ -90,7 +91,7 @@ li .todo-text {
     margin-right: 10px;
 }
 
-li button {
+li button .delete-btn{
     background-color: #dc3545;
     color: #fff;
     border: none;
@@ -98,3 +99,4 @@ li button {
     padding: 5px 10px;
     cursor: pointer;
 }
+/* END OF CODE */
