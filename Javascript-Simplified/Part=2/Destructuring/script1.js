@@ -1,72 +1,63 @@
-// JAVSCRIPT CODE
 import addGlobalEventListener from '/util-scripts/addGlobalEventListener.js'
-//element for the add button
+
 const toDoList = document.querySelector('#todo-list')
 
 addGlobalEventListener('click','.submit', e=>{
   e.preventDefault()
-  //input
-const input = document.querySelector('#todo-input')
-let inputData = input.value
-//Create a new list Item with a button
-const newListItem = document.createElement('li')
-const separator = document.createElement('div')
-const completeNewListBtn = document.createElement('button');
-const deleteNewListBtn = document.createElement('button');
+  const input = document.querySelector('#todo-input')
+  let inputData = input.value
+  const newListItem = document.createElement('li')
+  const separator = document.createElement('div')
+  const completeNewListBtn = document.createElement('button');
+  const deleteNewListBtn = document.createElement('button');
 
+  newListItem.innerText = inputData
+  deleteNewListBtn.classList.add('delete-btn')
+  deleteNewListBtn.innerText = 'Delete';
+  completeNewListBtn.classList.add('complete-btn')
+  completeNewListBtn.innerText = 'Completed'
+  separator.classList.add('separate')
+  newListItem.appendChild(separator);
+  newListItem.appendChild(completeNewListBtn);
+  newListItem.appendChild(deleteNewListBtn);
+  toDoList.appendChild(newListItem);
 
-newListItem.innerText = inputData
-//decorate the Complete and Delete buttons
-deleteNewListBtn.classList.add('delete-btn')
-deleteNewListBtn.innerText = 'Delete';
-completeNewListBtn.classList.add('complete-btn')
-completeNewListBtn.innerText = 'Completed'
-separator.classList.add('separate')
-
-  // If input is empty, return without creating a new list item
   if (!inputData) {
     return;
   }
 
-//Separates the the inputData and the buttons 
-newListItem.appendChild(separator);
-//Appends the delete and complete button
-newListItem.appendChild(completeNewListBtn);
-newListItem.appendChild(deleteNewListBtn);
+  addGlobalEventListener('click', '.delete-btn', (e) => {
+    const listItem = e.target.parentElement;
+    listItem.remove();
+  });
 
+  addGlobalEventListener('click','.complete-btn',e=>{
+    newListItem.style.backgroundColor = '#2bda46';
+    newListItem.classList.add('completed-item');
+    newListItem.classList.remove('not-completed-item');
+  })
 
-//Appends the list Item
-toDoList.appendChild(newListItem);
-//Deletes the list item
-addGlobalEventListener('click', '.delete-btn', (e) => {
-  const listItem = e.target.parentElement;
-  listItem.remove();
-});
-//Complete Button Listener
-addGlobalEventListener('click','.complete-btn',e=>{
-  newListItem.style.backgroundColor = '#2bda46'
-})
-  // Clear the input field
   input.value = ''
-
 })
-
 
 function initializeFilterButtons() {
-  // Elements for filter Buttons
   const allBtn = document.querySelector('.filter-btn.all')
   const notCompletedBtn = document.querySelector('.filter-btn.not-completed')
   const completedBtn = document.querySelector('.filter-btn.completed')
-  
-  // The class Activate highlights any button
+
   addGlobalEventListener('click','.filter-btn.all',e=>{
-    activate(allBtn)
+    activate(allBtn);
+    showAllListItems();
   })
+
   addGlobalEventListener('click','.filter-btn.not-completed',e=>{
-    activate(notCompletedBtn)
+    activate(notCompletedBtn);
+    showNotCompletedListItems();
   })
+
   addGlobalEventListener('click','.filter-btn.completed',e=>{
-    activate(completedBtn)
+    activate(completedBtn);
+    showCompletedListItems();
   })
 
   function activate(element){
@@ -76,16 +67,37 @@ function initializeFilterButtons() {
 
     element.classList.add('active')
   }
+
+  function showAllListItems() {
+    const listItems = document.querySelectorAll('#todo-list li');
+    listItems.forEach(item => {
+      item.style.display = 'flex';
+    });
+  }
+
+  function showNotCompletedListItems() {
+    const listItems = document.querySelectorAll('#todo-list li');
+    listItems.forEach(item => {
+      if (!item.classList.contains('completed-item')) {
+        item.style.display = 'flex';
+        item.classList.add('not-completed-item');
+      } else {
+        item.style.display = 'none';
+        item.classList.remove('not-completed-item');
+      }
+    });
+  }
+
+  function showCompletedListItems() {
+    const listItems = document.querySelectorAll('#todo-list li');
+    listItems.forEach(item => {
+      if (item.classList.contains('completed-item')) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
 }
 
-
-
 initializeFilterButtons();
-
-//When i create a list item it should only appear on All or Not Completed unless i mark it as complete
-//Add a button to the new list item that makes the background green
-//when the button is pressed the new list item will go to the completed and All pile and disappear from the not completed
-
-
-// END OF CODE
-
