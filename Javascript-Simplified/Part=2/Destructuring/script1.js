@@ -1,7 +1,6 @@
 // JAVSCRIPT CODE
 import addGlobalEventListener from '/util-scripts/addGlobalEventListener.js'
 //element for the add button
-const addBtn = document.querySelector('.submit')
 const toDoList = document.querySelector('#todo-list')
 
 addGlobalEventListener('click','.submit', e=>{
@@ -24,6 +23,11 @@ completeNewListBtn.classList.add('complete-btn')
 completeNewListBtn.innerText = 'Completed'
 separator.classList.add('separate')
 
+  // If input is empty, return without creating a new list item
+  if (!inputData) {
+    return;
+  }
+
 //Separates the the inputData and the buttons 
 newListItem.appendChild(separator);
 //Appends the delete and complete button
@@ -38,7 +42,10 @@ addGlobalEventListener('click', '.delete-btn', (e) => {
   const listItem = e.target.parentElement;
   listItem.remove();
 });
-
+//Complete Button Listener
+addGlobalEventListener('click','.complete-btn',e=>{
+  newListItem.style.backgroundColor = '#2bda46'
+})
   // Clear the input field
   input.value = ''
 
