@@ -11,6 +11,9 @@ addGlobalEventListener('click','.submit', e=>{
   const completeNewListBtn = document.createElement('button');
   const deleteNewListBtn = document.createElement('button');
 
+  if (!inputData) {
+    return;
+  }
   newListItem.innerText = inputData
   deleteNewListBtn.classList.add('delete-btn')
   deleteNewListBtn.innerText = 'Delete';
@@ -22,9 +25,7 @@ addGlobalEventListener('click','.submit', e=>{
   newListItem.appendChild(deleteNewListBtn);
   toDoList.appendChild(newListItem);
 
-  if (!inputData) {
-    return;
-  }
+
 
   addGlobalEventListener('click', '.delete-btn', (e) => {
     const listItem = e.target.parentElement;
@@ -32,7 +33,7 @@ addGlobalEventListener('click','.submit', e=>{
   });
 
   addGlobalEventListener('click','.complete-btn',e=>{
-    newListItem.style.backgroundColor = '#2bda46';
+    newListItem.style.backgroundColor = '#2c3fea';
     newListItem.classList.add('completed-item');
     newListItem.classList.remove('not-completed-item');
   })
