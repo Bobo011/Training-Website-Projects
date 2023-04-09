@@ -3,6 +3,8 @@ import addGlobalEventListener from "/util-scripts/addGlobalEventListener.js";
 
 const toDoList = document.querySelector("#todo-list");
 
+
+
 addGlobalEventListener("click", ".submit", (e) => {
   e.preventDefault();
 
@@ -33,15 +35,29 @@ addGlobalEventListener("click", ".submit", (e) => {
   }
   appendItems();
 
+   // Save data to local storage
+   let data = JSON.parse(localStorage.getItem("toDoList")) || [];
+   data.push(inputData);
+   localStorage.setItem("toDoList", JSON.stringify(data));
   deleteButton();
   completeButton();
   function completeButton() {
     addGlobalEventListener("click", ".complete-btn", (e) => {
-      newListItem.style.backgroundColor = "#2c3fea";
-      newListItem.classList.add("completed-item");
-      newListItem.classList.remove("not-completed-item");
+      const listItem = e.target.parentElement;
+      if (!listItem.classList.contains("completed-item")) {
+        // If the item has not been completed, complete the item
+        listItem.style.backgroundColor = "#007bff";
+        listItem.classList.add("completed-item");
+        listItem.classList.remove("not-completed-item");
+      } else {
+        // If the item has already been completed, mark it as not completed
+        listItem.style.backgroundColor = "transparent";
+        listItem.classList.remove("completed-item");
+        listItem.classList.add("not-completed-item");
+      }
     });
   }
+  
 
   input.value = "";
 });
@@ -112,7 +128,20 @@ function deleteButton() {
   addGlobalEventListener("click", ".delete-btn", (e) => {
     const listItem = e.target.parentElement;
     listItem.remove();
-  });
+       // Remove data from local storage
+    let data = JSON.parse(localStorage.getItem("toDoList")) || [];
+    const listItemText = listItem.firstChild.textContent;
+    const index = data.indexOf(listItemText);
+    if (index > -1) {
+    data.splice(index, 1);
 }
+    localStorage.setItem("toDoList", JSON.stringify(data));
+  });
+
+  
+
+}
+
+
 
 //END OF CODE
