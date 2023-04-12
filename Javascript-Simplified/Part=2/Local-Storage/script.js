@@ -1,45 +1,51 @@
-// const inpKey = document.querySelector('#inpKey')
-// const inpValue = document.querySelector('#inpValue')
-// const btnInsert = document.querySelector('#button-insert-data')
-// const output = document.querySelector('.isOutput')
+// $(document).ready(function(){
 
-// btnInsert.addEventListener('click',()=> {
-//     const key = inpKey.value;
-//     const value = inpValue.value;
+//     const inpKey = $('#inpKey')
+//     const inpValue = $('#inpValue')
+//     const insertButton = $('.button-insert-data')
+//     const output = $('.isOutput')
 
-//     if(key && value){
-//         localStorage.setItem(key,value)
-//         location.reload();
+//     $(insertButton).click(function(){
+//       const keyValue = inpKey.val()
+//       const inValue = inpValue.val()
+
+//       if(keyValue && inValue){
+//         const deleteBtn = $('<button>')
+//           .text('Delete')
+//           .addClass('delete-button')
+//           .click((e)=>{
+//             const key = $(e.target).parent().data('key');
+//             localStorage.removeItem(key);
+//             $(e.target).closest('div').remove();
+//           });
+//         const div = $('<div>').text(`${keyValue}:${inValue}`).append(deleteBtn).data('key', keyValue);
+//         output.append(div);
+//         localStorage.setItem(keyValue, inValue);
+//       }
+//     });
+
+//     // Load data from localStorage on page load
+//     for (let i = 0; i < localStorage.length; i++) {
+//       const key = localStorage.key(i);
+//       const value = localStorage.getItem(key);
+//       const deleteBtn = $('<button>')
+//         .text('Delete')
+//         .addClass('delete-button')
+//         .click((e)=>{
+//           localStorage.removeItem(key);
+//           $(e.target).closest('div').remove();
+//         });
+//       const div = $('<div>').text(`${key}:${value}`).append(deleteBtn).data('key', key);
+//       output.append(div);
 //     }
-// })
+//   });
+$(document).ready(function () {
 
-// function deleteButton(key) {
-//     const deleteBtn = document.createElement('button')
-//     deleteBtn.textContent = 'Delete'
-//     deleteBtn.classList.add('delete-button')
-//     deleteBtn.addEventListener('click', () => {
-//       localStorage.removeItem(key)
-//       location.reload()
-//     })
-//     return deleteBtn
-//   }
-  
-//   for (let i = 0; i < localStorage.length; i++) {
-//     const key = localStorage.key(i)
-//     const value = localStorage.getItem(key)
+    $('span').addClass('email')
     
-//     output.innerHTML += `${key}:${value} `
-//     output.appendChild(deleteButton(key))
-//     output.appendChild(document.createElement('br'))
-//   }
+    
 
 
 
 
-
-
-
-
-
-
-
+});

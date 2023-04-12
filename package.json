@@ -4,7 +4,7 @@
   "description": "Training Websites",
   "main": "index.js",
   "scripts": {
-   "start":"parcel Javascript-Simplified/Part=2/Local-Storage/index.html",
+   "start":"parcel  Javascript-Simplified/Part=2/Local-Storage/index.html",
    "build": "parcel build Javascript-Simplified/Part=2/Local-Storage/index.html"
   },
   "repository": {
