@@ -13,6 +13,9 @@ const ICECREAM_ORDERED = "ICECREAM_ORDERED";
 const ICECREAM_RESTOCKED = "ICECREAM_RESTOCKED";
 
 
+const produce = require("immer").produce;
+
+
 function orderCake(){
 	return {
     type: CAKE_ORDERED,
@@ -64,10 +67,13 @@ switch(action.type){
 			numOfCakes:state.numOfCakes - 1
 		}
 		case CAKE_RESTOCKED:
-			return{
-...state,
-numOfCakes:state.numOfCakes + action.payload
-			}
+// 			return{
+// ...state,
+// numOfCakes:state.numOfCakes + action.payload
+// 			}
+return produce(state, (draft) => {
+  draft.numOfCakes += action.payload;
+});
 		default:
 			return state
 }
@@ -75,15 +81,21 @@ numOfCakes:state.numOfCakes + action.payload
 const iceCreamReducer = (state = initialIceCreamState, action) => {
   switch (action.type) {
     case ICECREAM_ORDERED:
-      return {
-        ...state,
-        numOfIceCreams: state.numOfIceCreams - action.payload,
-      };
+    //   return {
+    //     ...state,
+    //     numOfIceCreams: state.numOfIceCreams - action.payload,
+    //   };
+	return produce(state, (draft) => {
+    draft.numOfIceCreams -= action.payload;
+  });
     case ICECREAM_RESTOCKED:
-      return {
-        ...state,
-        numOfIceCreams: state.numOfIceCreams + action.payload,
-      };
+    //   return {
+    //     ...state,
+    //     numOfIceCreams: state.numOfIceCreams + action.payload,
+    //   };
+	return produce(state, (draft) => {
+    draft.numOfIceCreams += action.payload;
+  });
     default:
       return state;
   }
