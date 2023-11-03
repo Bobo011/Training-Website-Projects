@@ -75,7 +75,8 @@ const fetchUsers = () => {
       });
   };
 };
-
+//thunkMiddleware Allows action creator to return a function instead of an action
+//it is necessary to use async functions within and to fetch data
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 store.subscribe(()=>{console.log(store.getState());})
