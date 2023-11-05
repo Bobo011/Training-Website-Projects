@@ -5,18 +5,19 @@ const iceCreamActions = require('./features/icecream/iceCreamSlice').iceCreamAct
 
 console.log('Initial State', store.getState());
 
-const unsubscribe = store.subscribe(()=>{})
+const unsubscribe = store.subscribe(()=>{
+	console.log('Updated state',store.getState());
+})
 
 
-// store.dispatch(cakeActions.ordered())
-// store.dispatch(cakeActions.ordered())
-// store.dispatch(cakeActions.ordered())
-// store.dispatch(cakeActions.restock(3))
+store.dispatch(cakeActions.ordered())
+store.dispatch(cakeActions.ordered())
+store.dispatch(cakeActions.ordered())
+store.dispatch(cakeActions.restock(3))
 
-store.dispatch(iceCreamActions.ordered())
-store.dispatch(iceCreamActions.ordered())
-store.dispatch(iceCreamActions.ordered())
-store.dispatch(iceCreamActions.restock(3))
+// store.dispatch(iceCreamActions.ordered())
+// store.dispatch(iceCreamActions.ordered())
+// store.dispatch(iceCreamActions.ordered())
+// store.dispatch(iceCreamActions.restock(3))
 
-
-
+unsubscribe();
