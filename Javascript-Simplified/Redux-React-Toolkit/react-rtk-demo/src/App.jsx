@@ -12,8 +12,6 @@ function App() {
      <CakeView />
      <IceCreamView />
      <UserView />
-      
-     
     </>
   )
 }
